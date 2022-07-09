@@ -39,9 +39,7 @@ function mkexl(row,col){
     $('.dddi').html('使わない席を選んでください。<br><br>');
     $('.exl').append("<div class='mx-auto rounded-lg bg-slate-600' style='width:"+col*1.5 +"%;'><h1>前</div><br>");
     let strs = '';
-    
     for(i = 1; i <= row; i++) {
-        let a = 0;
         strs+="<div>";
         for(j = 1; j <= col; j++) {
             lcol = localStorage.getItem("cb"+studentseat);
@@ -49,12 +47,7 @@ function mkexl(row,col){
                 lcol = "";
             }
             strs +="<input class='m-auto dark:bg-gray-900  dark:text-gray-50 rounded-lg my-2' type='checkbox' id='cb"+studentseat+"' name='useless[]' value='"+studentseat+"' "+lcol+" />";
-            if(j%2 === 0){
-                if(j=== col){
-                    a = 1;
-                    studentseat++;
-                    continue;
-                }
+            if(j%2 === 0 && j<col){
                 strs +="&emsp;";
             }
             studentseat++;
