@@ -18,9 +18,14 @@ function maketable(e){
         }
         lcol = localStorage.getItem("tdinput"+i);
         if (lcol ===null){
-                lcol = "";
+            lcol = "";
             }
-        strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md shadow-indigo-500 rounded-xl px-2 py-2 bg-gradient-to-br to-indigo-400 from-indigo-500 hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input id='tdinput"+i+"' class=' shadow-md dark:bg-gray-800 dark:text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='stuname[]' placeholder='お名前'value='"+lcol+"'></td>";
+        prilcol = localStorage.getItem("pri"+i);
+        if(prilcol=== null){
+            strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md shadow-indigo-500 rounded-xl px-2 py-2 bg-gradient-to-br to-indigo-400 from-indigo-500 hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input id='tdinput"+i+"' class=' shadow-md dark:bg-gray-800 dark:text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='stuname[]' placeholder='お名前'value='"+lcol+"'></td>";
+        }else{
+            strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md shadow-indigo-500 rounded-xl px-2 py-2 bg-gradient-to-br to-red-400 from-red-500 hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input id='tdinput"+i+"' class=' shadow-md dark:bg-gray-800 dark:text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='priority[]' placeholder='お名前'value='"+lcol+"'></td>";
+        }
         if((i % 5) === 0){
             strs +="</tr><tr>";
         }
@@ -33,7 +38,6 @@ $('.student').append(strs);
 }
 
 function mkexl(row,col){
-    console.log(col);
     if(isNaN(col) || col === null || isNaN(row) || row === null){
         return;
     }
@@ -68,7 +72,6 @@ if(ldm !== null){
 var row1 = localStorage.getItem('row');
 var col1 = localStorage.getItem('col');
 if(row1 !== "" && col1 !== ""){
-    console.log(row1);
     $("#row").val(row1);
     $("#col").val(col1);
     mkexl(row1,col1);
@@ -114,6 +117,11 @@ function gotopage(){
     for(i = 1; i <= d; i++) {
         var tdinput = $('#tdinput'+i);
         // IF Tdinput is priority
+        if(tdinput.attr("name")=='priority[]'){
+            localStorage.setItem('pri'+i,1);
+        }else{
+            localStorage.removeItem('pri'+i);
+        }
         var txt = tdinput.val();
         localStorage.setItem('tdinput'+i,txt);
     }
