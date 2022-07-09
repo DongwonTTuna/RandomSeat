@@ -5,20 +5,22 @@
 <title>PHPサンプル</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen bg-gray-100 dark:bg-gray-700 dark:text-gray-50 max-h-screen">
+<body class="min-h-screen bg-gray-100 dark:bg-slate-900 dark:text-gray-50 max-h-screen">
     <div class="mx-auto">
     <form class="text-center"action="./o.php" method="post">
-        学生数を入力してください
+        <div class='students shadow-xl shadow-fuchsia-900 bg-gradient-to-br to-purple-800 from-indigo-600 mx-auto mt-20 w-max rounded-xl px-6 py-6'>
+        <p>学生数を選択してください<p>
         <select class="dark:bg-gray-800 rounded-lg"id="dm">
-            <?php
-            for ($i = 1; $i < 51; $i++) {
-                echo "<option value='", $i, "'>", $i, "</option>";
-            }
-            ?>
+        <?php
+        for ($i = 1; $i < 51; $i++) {
+            echo "<option value='", $i, "'>", $i, "</option>";
+        }
+        ?>
         </select>
-        <div class='student'>
+        <div class="inform none"></div>
+        <div class="student"></div>
         </div>
-        <div class="rowcol" style="visibility: hidden;">
+        <div class="rowcol hidden">
             <br>
             座席の行と列を入力してください。
             行
