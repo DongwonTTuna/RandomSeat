@@ -1,9 +1,15 @@
 let d;
 let studentseat = 0;
-document.getElementById("dm").addEventListener("change", (e) => {
+
+
+function maketable(e){
     $('.student').html("");
     $('.inform').html("");
-    d = (e.target).value;
+    if(typeof(e) !== "number"){
+        d = (e.target).value;
+    }else {
+        d=e;
+    }
     $('.inform').append("<div class='float-left p-2 font-bold rounded-lg border-2 border-indigo-800'><h5>※&emsp;ダブルクリックで前の席に座らせます。</h5></div>");
     let strs = "<table class='table-fixed hue-rotate-15 border-separate border-spacing-2 border-spacing-y-4 mt-20'><tbody><tr>";
     for(i = 1; i <= d; i++) {
@@ -25,7 +31,15 @@ strs +="</tr></tbody></table>";
 $('.student').append(strs);
     $('.rowcol').removeClass("hidden");
     $('.rowcol').addClass("visible");
-});
+}
+
+let ldm = parseInt(localStorage.getItem('dm'));
+if(ldm !== null){
+    maketable(ldm);
+}
+
+
+document.getElementById("dm").addEventListener("change", (e) => maketable(e));
 
 document.getElementById("row").addEventListener("change", make_exl);
 document.getElementById("col").addEventListener("change", make_exl);
@@ -82,6 +96,8 @@ function dbck(e) {
 
 function gotopage(){
     localStorage.clear();
+    txt = $('#dm').val();
+    localStorage.setItem('dm',txt);
     for(i = 1; i <= d; i++) {
         var tdinput = $('#tdinput'+i);
         // IF Tdinput is priority
@@ -95,4 +111,11 @@ function gotopage(){
             localStorage.setItem('cb'+i,'checked');
         }
     }
+    alert("保存されました");
+}
+
+function clearlocal(){
+    localStorage.clear();
+    location.reload();
+    alert("全てがされました");
 }
