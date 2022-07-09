@@ -9,7 +9,7 @@ document.getElementById("dm").addEventListener("change", (e) => {
         if (i< 10){
             str = '0' + str;
         }
-        strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md shadow-indigo-500 rounded-xl px-2 py-2 bg-gradient-to-br to-indigo-400 from-indigo-500 hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800'>学生 #"+ str+"<br><input class=' shadow-md dark:bg-gray-800 dark:text-gray-50 rounded-lg my-2 mx-2 text-center' type='text' name='stuname[]' value='"+i+"'></td>";
+        strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md shadow-indigo-500 rounded-xl px-2 py-2 bg-gradient-to-br to-indigo-400 from-indigo-500 hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input class=' shadow-md dark:bg-gray-800 dark:text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='stuname[]' placeholder='お名前'></td>";
         if((i % 5) === 0){
             strs +="</tr><tr>";
         }
