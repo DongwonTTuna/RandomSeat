@@ -58,56 +58,57 @@
         // get random and divide settting seat
         $i = 0;
         $priority_seat_col = [];
-        foreach ($priority as $prio) {
-            if (isset($seat[$i]) != true) {
-                echo $alert;
-            }
-            if (empty($useless) == 0) {
-                $temp = 0;
-                $k = 0;
-                while($k==0){
-                    if ($i>=$col){
-                        while(true){
-                            $itis = false;
-                            # foreach to pull $priority_seat_col as $pri
-                            foreach ($priority_seat_col as $pri){
-                                # if ($i == $pri) now col is the priority col
-                                if (($i % $col) == $pri){
-                                    $itis = true;
+        if (isset($_POST['priority']) == true) {
+            foreach ($priority as $prio) {
+                if (isset($seat[$i]) != true) {
+                    echo $alert;
+                }
+                if (empty($useless) == 0) {
+                    $temp = 0;
+                    $k = 0;
+                    while($k==0){
+                        if ($i>=$col){
+                            while(true){
+                                $itis = false;
+                                # foreach to pull $priority_seat_col as $pri
+                                foreach ($priority_seat_col as $pri){
+                                    # if ($i == $pri) now col is the priority col
+                                    if (($i % $col) == $pri){
+                                        $itis = true;
+                                    }
+                                }
+                                # if this is not the priority col, then i++
+                                if ($itis == false) {
+                                    $i++;
+                                }else{
+                                    # if this is the priority col, then break
+                                    break;
                                 }
                             }
-                            # if this is not the priority col, then i++
-                            if ($itis == false) {
-                                $i++;
-                            }else{
-                                # if this is the priority col, then break
-                                break;
+                        }
+
+                        foreach ($useless as $key) {
+                            if ($i == $key) {
+                                $temp = 1;
                             }
                         }
-                    }
-
-                    foreach ($useless as $key) {
-                        if ($i == $key) {
-                            $temp = 1;
+                        if ($temp == 1) {
+                            $i += 1;
+                            $temp = 0;
+                        } else{
+                            $k = 1;
                         }
-                    }
-                    if ($temp == 1) {
-                        $i += 1;
-                        $temp = 0;
-                    } else{
-                        $k = 1;
-                    }
-                    }
+                        }
+                }
+                $seat[$i] = $prio;
+                $aki = array_diff($aki, array($i));
+                if ($i<$col){
+                    array_push($priority_seat_col,$i);
+                }
+                $aki = array_values($aki);
+                $i++;
             }
-            $seat[$i] = $prio;
-            $aki = array_diff($aki, array($i));
-            if ($i<$col){
-                array_push($priority_seat_col,$i);
-            }
-            $aki = array_values($aki);
-            $i++;
         }
-
 
 
 
