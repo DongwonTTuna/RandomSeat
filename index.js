@@ -5,7 +5,7 @@ let studentseat = 0;
 function maketable(e){
     $('.student').html("");
     $('.inform').html("");
-    if(typeof(e) !== "number"){
+    if(typeof(e) !== "string"){
         d = (e.target).value;
     }else {
         d=e;
@@ -33,20 +33,7 @@ $('.student').append(strs);
     $('.rowcol').addClass("visible");
 }
 
-let ldm = parseInt(localStorage.getItem('dm'));
-if(ldm !== null){
-    maketable(ldm);
-}
-
-
-document.getElementById("dm").addEventListener("change", (e) => maketable(e));
-
-document.getElementById("row").addEventListener("change", make_exl);
-document.getElementById("col").addEventListener("change", make_exl);
-
-function make_exl(){
-    let row = parseInt($('#row').find(":selected").text());
-    let col = parseInt($('#col').find(":selected").text());
+function mkexl(row,col){
     studentseat = 0;
     $('.exl').html('');
     $('.dddi').html('使わない席を選んでください。<br><br>');
@@ -77,6 +64,31 @@ function make_exl(){
     $('.exl').append(strs);
 }
 
+let ldm = localStorage.getItem('dm');
+if(ldm !== null){
+    $("#dm").val(ldm);
+    maketable(ldm);
+}
+var row1 = localStorage.getItem('row');
+var col1 = localStorage.getItem('col');
+if(row1 !== null && col1 !== null){
+    $("#row").val(row1);
+    $("#col").val(col1);
+    mkexl(row1,col1);
+}
+
+document.getElementById("dm").addEventListener("change", (e) => maketable(e));
+
+document.getElementById("row").addEventListener("change", make_exl);
+document.getElementById("col").addEventListener("change", make_exl);
+
+function make_exl(){
+    let row = parseInt($('#row').find(":selected").text());
+    let col = parseInt($('#col').find(":selected").text());
+    mkexl(row,col);
+
+}
+
 function dbck(e) {
     if (e.target.classList.contains("to-indigo-400")){
         $(e.target).removeClass("to-indigo-400");
@@ -98,6 +110,10 @@ function gotopage(){
     localStorage.clear();
     txt = $('#dm').val();
     localStorage.setItem('dm',txt);
+    txt = $('#row').val();
+    localStorage.setItem('row',txt);
+    txt = $('#col').val();
+    localStorage.setItem('col',txt);
     for(i = 1; i <= d; i++) {
         var tdinput = $('#tdinput'+i);
         // IF Tdinput is priority
