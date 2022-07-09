@@ -11,13 +11,14 @@
         <div class='students shadow-xl shadow-fuchsia-900 bg-gradient-to-br to-purple-800 from-indigo-600 mx-auto mt-20 w-max rounded-xl px-6 py-6'>
         <p>学生数を選択してください<p>
         <select class="dark:bg-gray-800 rounded-lg"id="dm">
+        <option value=""></option>
         <?php
         for ($i = 1; $i < 51; $i++) {
             echo "<option value='", $i, "'>", $i, "</option>";
         }
         ?>
         </select>
-        <div class="inform none"></div>
+        <div class="inform"></div>
         <div class="student"></div>
         </div>
         <div class="rowcol hidden">
@@ -25,6 +26,7 @@
             座席の行と列を入力してください。
             行
             <select class="dark:bg-gray-800 rounded-lg" id="row" name='row'>
+            <option value=""></option>
                 <?php
                 for ($i = 1; $i < 6; $i++) {
                     echo "<option value='", $i, "'>", $i, "</option>";
@@ -33,6 +35,7 @@
             </select>
             列
             <select class="dark:bg-gray-800 rounded-lg" id="col" name='col'>
+            <option value=""></option>
                 <?php
                 for ($i = 1; $i < 11; $i++) {
                     echo "<option value='", $i, "'>", $i, "</option>";
@@ -60,7 +63,7 @@
         <span class="relative">データ保存</span>
         </button>
         <button type="button" ondblclick='clearlocal()' class="ml-20 px-5 py-2.5 relative rounded group font-medium text-white font-medium inline-block bg-gradient-to-br from-red-400 to-red-600 shadow-sm shadow-red-700">
-        <span class="relative">データ削除<br>(ダブルクリック)</span>
+        <span class="relative">データ削除</span>
         </button>
         </div>
     </form>

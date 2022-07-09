@@ -1,7 +1,6 @@
 let d;
 let studentseat = 0;
 
-
 function maketable(e){
     $('.student').html("");
     $('.inform').html("");
@@ -10,7 +9,7 @@ function maketable(e){
     }else {
         d=e;
     }
-    $('.inform').append("<div class='float-left p-2 font-bold rounded-lg border-2 border-indigo-800'><h5>※&emsp;ダブルクリックで前の席に座らせます。</h5></div>");
+    $('.inform').append("<div class='float-left p-2 font-bold rounded-lg border-2 border-indigo-800'><ul class='text-left'><li><h5>※&emsp;ダブルクリックで前の席に座らせます。</h5></li><li><h5>※&emsp;削除ボタンはダブルクリックが必要です。</h5></li></ul></div>");
     let strs = "<table class='table-fixed hue-rotate-15 border-separate border-spacing-2 border-spacing-y-4 mt-20'><tbody><tr>";
     for(i = 1; i <= d; i++) {
         let str = i;
@@ -34,10 +33,14 @@ $('.student').append(strs);
 }
 
 function mkexl(row,col){
+    console.log(col);
+    if(isNaN(col) || col === null || isNaN(row) || row === null){
+        return;
+    }
     studentseat = 0;
     $('.exl').html('');
     $('.dddi').html('使わない席を選んでください。<br><br>');
-    $('.exl').append("<div class='mx-auto rounded-lg bg-slate-600' style='width:"+col*1.5 +"%;'><h1>前</div><br>");
+    $('.exl').append("<div class='mx-auto rounded-lg bg-slate-600' style='width:"+col*1.2 +"%;'><h1>前</div><br>");
     let strs = '';
     for(i = 1; i <= row; i++) {
         strs+="<div>";
@@ -64,7 +67,8 @@ if(ldm !== null){
 }
 var row1 = localStorage.getItem('row');
 var col1 = localStorage.getItem('col');
-if(row1 !== null && col1 !== null){
+if(row1 !== "" && col1 !== ""){
+    console.log(row1);
     $("#row").val(row1);
     $("#col").val(col1);
     mkexl(row1,col1);
