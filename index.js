@@ -1,7 +1,15 @@
-document.getElementById("dm").addEventListener("change", (e) => {
+let d;
+let studentseat = 0;
+
+
+function maketable(e){
     $('.student').html("");
     $('.inform').html("");
-    let d = (e.target).value;
+    if(typeof(e) !== "number"){
+        d = (e.target).value;
+    }else {
+        d=e;
+    }
     $('.inform').append("<div class='float-left p-2 font-bold rounded-lg border-2 border-indigo-800'><h5>※&emsp;ダブルクリックで前の席に座らせます。</h5></div>");
     let strs = "<table class='table-fixed hue-rotate-15 border-separate border-spacing-2 border-spacing-y-4 mt-20'><tbody><tr>";
     for(i = 1; i <= d; i++) {
@@ -9,7 +17,11 @@ document.getElementById("dm").addEventListener("change", (e) => {
         if (i< 10){
             str = '0' + str;
         }
-        strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md shadow-indigo-500 rounded-xl px-2 py-2 bg-gradient-to-br to-indigo-400 from-indigo-500 hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input class=' shadow-md dark:bg-gray-800 dark:text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='stuname[]' placeholder='お名前'></td>";
+        lcol = localStorage.getItem("tdinput"+i);
+        if (lcol ===null){
+                lcol = "";
+            }
+        strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md shadow-indigo-500 rounded-xl px-2 py-2 bg-gradient-to-br to-indigo-400 from-indigo-500 hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input id='tdinput"+i+"' class=' shadow-md dark:bg-gray-800 dark:text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='stuname[]' placeholder='お名前'value='"+lcol+"'></td>";
         if((i % 5) === 0){
             strs +="</tr><tr>";
         }
@@ -19,7 +31,15 @@ strs +="</tr></tbody></table>";
 $('.student').append(strs);
     $('.rowcol').removeClass("hidden");
     $('.rowcol').addClass("visible");
-});
+}
+
+let ldm = parseInt(localStorage.getItem('dm'));
+if(ldm !== null){
+    maketable(ldm);
+}
+
+
+document.getElementById("dm").addEventListener("change", (e) => maketable(e));
 
 document.getElementById("row").addEventListener("change", make_exl);
 document.getElementById("col").addEventListener("change", make_exl);
@@ -27,16 +47,21 @@ document.getElementById("col").addEventListener("change", make_exl);
 function make_exl(){
     let row = parseInt($('#row').find(":selected").text());
     let col = parseInt($('#col').find(":selected").text());
-    let studentseat = 0;
+    studentseat = 0;
     $('.exl').html('');
     $('.dddi').html('使わない席を選んでください。<br><br>');
     $('.exl').append("<div class='mx-auto rounded-lg bg-slate-600' style='width:"+col*1.5 +"%;'><h1>前</div><br>");
     let strs = '';
+    
     for(i = 1; i <= row; i++) {
         let a = 0;
         strs+="<div>";
         for(j = 1; j <= col; j++) {
-            strs +="<input class='m-auto dark:bg-gray-900  dark:text-gray-50 rounded-lg my-2' type='checkbox' name='useless[]' value='" + studentseat + "' />";
+            lcol = localStorage.getItem("cb"+studentseat);
+            if (lcol ===null){
+                lcol = "";
+            }
+            strs +="<input class='m-auto dark:bg-gray-900  dark:text-gray-50 rounded-lg my-2' type='checkbox' id='cb"+studentseat+"' name='useless[]' value='"+studentseat+"' "+lcol+" />";
             if(j%2 === 0){
                 if(j=== col){
                     a = 1;
@@ -67,4 +92,30 @@ function dbck(e) {
         $(e.target.querySelector('input')).attr('name','stuname[]');
     }
 
+}
+
+function gotopage(){
+    localStorage.clear();
+    txt = $('#dm').val();
+    localStorage.setItem('dm',txt);
+    for(i = 1; i <= d; i++) {
+        var tdinput = $('#tdinput'+i);
+        // IF Tdinput is priority
+        var txt = tdinput.val();
+        localStorage.setItem('tdinput'+i,txt);
+    }
+    for(i=0; i<studentseat;i++){
+        var cb = $('#cb'+i);
+        var txt = cb.is(':checked');
+        if(txt === true){
+            localStorage.setItem('cb'+i,'checked');
+        }
+    }
+    alert("保存されました");
+}
+
+function clearlocal(){
+    localStorage.clear();
+    location.reload();
+    alert("全てがされました");
 }
