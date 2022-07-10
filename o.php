@@ -98,7 +98,7 @@
             }
             
             //priority is empty or $seat[$i] is not the priority seat, set this seat for normal students.
-            $rand = rand(0, sizeof($aki) - 1);
+            $rand = rand(0, sizeof($stunames) - 1);
             $seat[$i] = $stunames[$rand];
             $aki = array_diff($aki, array($aki[$rand]));
             $aki = array_values($aki);
