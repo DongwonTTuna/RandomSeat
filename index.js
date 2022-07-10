@@ -27,7 +27,7 @@ function maketable(e){
         }else{
             strs += " to-red-400 from-red-500 ";
         }
-        strs += "hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input id='tdinput"+i+"' class=' shadow-md dark:bg-gray-800 dark:text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='";
+        strs += "hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input id='tdinput"+i+"' class=' shadow-md bg-gray-800 text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='";
         if (prilcol==null){
             strs+="stuname[]";
         }else{
@@ -61,7 +61,7 @@ function mkexl(row,col){
             if (lcol ===null){
                 lcol = "";
             }
-            strs +="<input class='m-auto dark:bg-gray-900  dark:text-gray-50 rounded-lg my-2' type='checkbox' id='cb"+studentseat+"' name='useless[]' value='"+studentseat+"' "+lcol+" />";
+            strs +="<input class='m-auto bg-gray-900  text-gray-50 rounded-lg my-2' type='checkbox' id='cb"+studentseat+"' name='useless[]' value='"+studentseat+"' "+lcol+" />";
             if(j%2 === 0 && j<col){
                 strs +="&emsp;";
             }
