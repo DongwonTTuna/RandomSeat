@@ -9,7 +9,7 @@ function maketable(e){
     }else {
         d=e;
     }
-    $('.inform').append("<div class='float-left p-2 font-bold rounded-lg border-2 border-indigo-800'><ul class='text-left'><li><h5>※&emsp;ダブルクリックで前の席に座らせます。</h5></li><li><h5>※&emsp;削除ボタンはダブルクリックが必要です。</h5></li></ul></div>");
+    $('.inform').append("<div class='float-left p-2 font-bold rounded-lg border-2 border-indigo-800'><ul class='text-left'><li><h5>※&emsp;ダブルクリックで前の席に座らせます。</h5></li><li><h5>※&emsp;削除するにはダブルクリックが必要です。</h5></li></ul></div>");
     let strs = "<table class='table-fixed hue-rotate-15 border-separate border-spacing-2 border-spacing-y-4 mt-20'><tbody><tr>";
     for(i = 1; i <= d; i++) {
         let str = i;
@@ -20,12 +20,20 @@ function maketable(e){
         if (lcol ===null){
             lcol = "";
             }
+            strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md shadow-indigo-500 rounded-xl px-2 py-2 bg-gradient-to-br";
         prilcol = localStorage.getItem("pri"+i);
         if(prilcol=== null){
-            strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md shadow-indigo-500 rounded-xl px-2 py-2 bg-gradient-to-br to-indigo-400 from-indigo-500 hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input id='tdinput"+i+"' class=' shadow-md dark:bg-gray-800 dark:text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='stuname[]' placeholder='お名前'value='"+lcol+"'></td>";
+            strs+=" to-indigo-400 from-indigo-500 ";
         }else{
-            strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md shadow-indigo-500 rounded-xl px-2 py-2 bg-gradient-to-br to-red-400 from-red-500 hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input id='tdinput"+i+"' class=' shadow-md dark:bg-gray-800 dark:text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='priority[]' placeholder='お名前'value='"+lcol+"'></td>";
+            strs += " to-red-400 from-red-500 ";
         }
+        strs += "hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input id='tdinput"+i+"' class=' shadow-md dark:bg-gray-800 dark:text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='";
+        if (prilcol==null){
+            strs+="stuname[]";
+        }else{
+            strs+="priority[]";
+        }
+        strs += "' placeholder='お名前'value='"+lcol+"'></td>";
         if((i % 5) === 0){
             strs +="</tr><tr>";
         }

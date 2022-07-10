@@ -18,7 +18,8 @@
         </div>
         <div class="z-[-1] absolute inset-x-3/4 mr-96 text-center bg-gray-800 text-neutral-100 w-1/12 py-8 rounded-md">教卓</div>
         <?php
-        $alert = '<script type="text/javascript">alert("学生数や席数を再度確認してください。");document.location.href = "./i.php";</script>';
+        #$alert = '<script type="text/javascript">alert("学生数や席数を再度確認してください。");document.location.href = "./i.php";</script>';
+        $alert = '<script type="text/javascript"></script>';
         if (isset($_POST['stuname']) != true) {
             echo $alert;
         }
@@ -43,106 +44,75 @@
 
         // makes seats available
         for ($i = 0; $i < ($row * $col); $i++) {
-            //append seatable seats to aki[]
-            array_push($aki, $i);
-            array_push($seat, "");
-        }
-        // remove useless seat
-        if (empty($useless) != 1) {
-            $aki = array_diff($aki, $useless);
-            $aki = array_values($aki);
-        }
-        
-        
-        
-        // get random and divide settting seat
-        $i = 0;
-        $priority_seat_col = [];
-        if (isset($_POST['priority']) == true) {
-            foreach ($priority as $prio) {
-                if (isset($seat[$i]) != true) {
-                    echo $alert;
+            if (empty($useless) != 1) {
+                $k = 0;
+                foreach ($useless as $key) {
+                    if ($i == $key) {
+                        $k = 1;
+                    }
                 }
-                if (empty($useless) == 0) {
-                    $temp = 0;
-                    $k = 0;
-                    while($k==0){
-                        if ($i>=$col){
-                            while(true){
-                                $itis = false;
-                                # foreach to pull $priority_seat_col as $pri
-                                foreach ($priority_seat_col as $pri){
-                                    # if ($i == $pri) now col is the priority col
-                                    if (($i % $col) == $pri){
-                                        $itis = true;
-                                    }
-                                }
-                                # if this is not the priority col, then i++
-                                if ($itis == false) {
-                                    $i++;
-                                }else{
-                                    # if this is the priority col, then break
-                                    break;
-                                }
-                            }
-                        }
-
-                        foreach ($useless as $key) {
-                            if ($i == $key) {
-                                $temp = 1;
-                            }
-                        }
-                        if ($temp == 1) {
-                            $i += 1;
-                            $temp = 0;
-                        } else{
-                            $k = 1;
-                        }
-                        }
+                if ($k == 1) {
+                    array_push($seat, "空き席");
+                    continue;
                 }
-                $seat[$i] = $prio;
-                $aki = array_diff($aki, array($i));
-                if ($i<$col){
-                    array_push($priority_seat_col,$i);
-                }
-                $aki = array_values($aki);
-                $i++;
             }
+            //makes seats and append seatable seats to $aki
+            array_push($seat, "");
+            array_push($aki, $i);
         }
 
-
-
-
-        foreach ($stunames as $stuname) {
-            $rand = rand(0, sizeof($aki) - 1);
-            if (isset($seat[$aki[$rand]]) != true) {
+        $priority_seat_col = [];
+        //for ($i= 0; $i <($col*$row); $i++))
+        for ($i = 0; $i < ($col * $row); $i++) {
+            // if ($seat[$i]) doesn't exist, make the error.
+            if (isset($seat[$i]) != true) {
                 echo $alert;
             }
-            $seat[$aki[$rand]] = $stuname;
+            // if($seat[$i] == "空き席") then continue;
+            if ($seat[$i] == "空き席") {
+                continue;
+            }
+            // if($i > $col) then compare if $seat[$i] is priority seat.
+            if (isset($_POST['priority'])) {
+                $rand = rand(0, sizeof($priority) - 1);
+                if ($i > $col - 1) {
+                    if (sizeof($priority) >= 1) {
+                        if (in_array(($i % $col), $priority_seat_col)) {
+                            $seat[$i] = $priority[$rand];
+                            $aki = array_diff($aki, array($i));
+                            $aki = array_values($aki);
+                            $priority = array_diff($priority, array($priority[$rand]));
+                            $priority = array_values($priority);
+                            continue;
+                        }
+                    }
+                } else {
+                    // sit priority seats first then put them in $priority_seat_col and remove Item.
+                    $seat[$i] = $priority[$rand];
+                    $aki = array_diff($aki, array($i));
+                    $aki = array_values($aki);
+                    array_push($priority_seat_col, $i);
+                    $priority = array_diff($priority, array($priority[$rand]));
+                    $priority = array_values($priority);
+                    continue;
+                }
+            }
+            
+            //priority is empty or $seat[$i] is not the priority seat, set this seat for normal students.
+            $rand = rand(0, sizeof($aki) - 1);
+            $seat[$i] = $stunames[$rand];
             $aki = array_diff($aki, array($aki[$rand]));
-
             $aki = array_values($aki);
+            $stunames = array_diff($stunames, array($stunames[$rand]));
+            $stunames = array_values($stunames);
         }
-        // make
+
+        // make table
         $stuval = 0;
         echo '<table class="mx-auto mt-40 table-fixed w-11/12 border-separate border-spacing-1 border-spacing-y-20 text-center"><tbody><tr>';
         for ($i = 0; $i < $row; $i++) {
             for ($j = 1; $j <= $col; $j++) {
-                if (empty($useless) != 1) {
-                    $k = 0;
-                    foreach ($useless as $key) {
-                        if ($stuval == $key) {
-                            $k = 1;
-                        }
-                    }
-                    if ($k == 1) {
-                        $stuval += 1;
-                        echo '<td class=" px-8 py-8 bg-gray-200 max-h-max rounded-md"></td>';
-                        tdspaceadd($j);
-                        continue;
-                    }
-                }
-                if ($seat[$stuval] == "") {
+                if ($seat[$stuval] == "空き席") {
                     $stuval += 1;
                     echo '<td class=" px-8 py-8 bg-gray-200 max-h-max rounded-md"></td>';
                     tdspaceadd($j);
