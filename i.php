@@ -5,12 +5,12 @@
 <title>PHPサンプル</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen bg-gray-100 dark:bg-slate-900 dark:text-gray-50 max-h-screen">
+<body class="min-h-screen bg-slate-900 text-gray-50 max-h-screen">
     <div class="mx-auto">
     <form class="text-center"action="./o.php" method="post">
         <div class='students shadow-xl shadow-fuchsia-900 bg-gradient-to-br to-purple-800 from-indigo-600 mx-auto mt-20 w-max rounded-xl px-6 py-6'>
         <p>学生数を選択してください<p>
-        <select class="dark:bg-gray-800 rounded-lg"id="dm" name="dm">
+        <select class="bg-gray-800 rounded-lg"id="dm" name="dm">
         <option value=""></option>
         <?php
         for ($i = 1; $i < 51; $i++) {
@@ -25,7 +25,7 @@
             <br>
             座席の行と列を入力してください。
             行
-            <select class="dark:bg-gray-800 rounded-lg" id="row" name='row'>
+            <select class="bg-gray-800 rounded-lg" id="row" name='row'>
             <option value=""></option>
                 <?php
                 for ($i = 1; $i < 6; $i++) {
@@ -34,7 +34,7 @@
                 ?>
             </select>
             列
-            <select class="dark:bg-gray-800 rounded-lg" id="col" name='col'>
+            <select class="bg-gray-800 rounded-lg" id="col" name='col'>
             <option value=""></option>
                 <?php
                 for ($i = 1; $i < 11; $i++) {
