@@ -116,7 +116,7 @@ function dbck(e) {
 
 function gotopage(){
     localStorage.clear();
-    txt = $('#dm').val();
+    var txt = $('#dm').val();
     localStorage.setItem('dm',txt);
     txt = $('#row').val();
     localStorage.setItem('row',txt);
@@ -130,12 +130,12 @@ function gotopage(){
         }else{
             localStorage.removeItem('pri'+i);
         }
-        var txt = tdinput.val();
+        txt = tdinput.val();
         localStorage.setItem('tdinput'+i,txt);
     }
     for(i=0; i<studentseat;i++){
         var cb = $('#cb'+i);
-        var txt = cb.is(':checked');
+        txt = cb.is(':checked');
         if(txt === true){
             localStorage.setItem('cb'+i,'checked');
         }

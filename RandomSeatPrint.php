@@ -25,7 +25,7 @@
         $row = $_POST['row'];
         $col = $_POST['col'];
         $dm = $_POST['dm'];
-        if ($dm > ($row*$col)){
+        if ($dm > ($row * $col)) {
             echo $alert;
         }
         $stunames = $_POST['stuname'];
@@ -96,7 +96,7 @@
                     continue;
                 }
             }
-            
+
             //priority is empty or $seat[$i] is not the priority seat, set this seat for normal students.
             $rand = rand(0, sizeof($stunames) - 1);
             $seat[$i] = $stunames[$rand];
