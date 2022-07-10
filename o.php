@@ -18,13 +18,16 @@
         </div>
         <div class="z-[-1] absolute inset-x-3/4 mr-96 text-center bg-gray-800 text-neutral-100 w-1/12 py-8 rounded-md">教卓</div>
         <?php
-        #$alert = '<script type="text/javascript">alert("学生数や席数を再度確認してください。");document.location.href = "./i.php";</script>';
-        $alert = '<script type="text/javascript"></script>';
+        $alert = '<script type="text/javascript">alert("学生数や席数を再度確認してください。");document.location.href = "./i.php";</script>';
         if (isset($_POST['stuname']) != true) {
             echo $alert;
         }
         $row = $_POST['row'];
         $col = $_POST['col'];
+        $dm = $_POST['dm'];
+        if ($dm > ($row*$col)){
+            echo $alert;
+        }
         $stunames = $_POST['stuname'];
         $aki = [];
         $seat = [];
@@ -64,10 +67,6 @@
         $priority_seat_col = [];
         //for ($i= 0; $i <($col*$row); $i++))
         for ($i = 0; $i < ($col * $row); $i++) {
-            // if ($seat[$i]) doesn't exist, make the error.
-            if (isset($seat[$i]) != true) {
-                echo $alert;
-            }
             // if($seat[$i] == "空き席") then continue;
             if ($seat[$i] == "空き席") {
                 continue;

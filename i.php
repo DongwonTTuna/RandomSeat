@@ -10,7 +10,7 @@
     <form class="text-center"action="./o.php" method="post">
         <div class='students shadow-xl shadow-fuchsia-900 bg-gradient-to-br to-purple-800 from-indigo-600 mx-auto mt-20 w-max rounded-xl px-6 py-6'>
         <p>学生数を選択してください<p>
-        <select class="dark:bg-gray-800 rounded-lg"id="dm">
+        <select class="dark:bg-gray-800 rounded-lg"id="dm" name="dm">
         <option value=""></option>
         <?php
         for ($i = 1; $i < 51; $i++) {
