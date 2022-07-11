@@ -69,24 +69,25 @@
 
         $priority_seat_col = [];
         //for ($i= 0; $i <($col*$row); $i++))
-        for ($i = 0; $i < ($col * $row); $i++) {
-            // if($seat[$i] == "空き席") then continue;
-            if ($seat[$i] == "空き席") {
-                continue;
-            }
-            // if($i > $col) then compare if $seat[$i] is priority seat.
-            if (isset($_POST['priority'])) {
+        if (isset($_POST['priority'])) {
+            for ($i = 0; $i < ($col * $row); $i++) {
+                if (empty($priority)){
+                    break;
+                }
+                // if($seat[$i] == "空き席") then continue;
+                if ($seat[$i] == "空き席") {
+                    continue;
+                }
+                // if($i > $col) then compare if $seat[$i] is priority seat.
                 $rand = rand(0, sizeof($priority) - 1);
                 if ($i > $col - 1) {
-                    if (sizeof($priority) >= 1) {
-                        if (in_array(($i % $col), $priority_seat_col)) {
-                            $seat[$i] = $priority[$rand];
-                            $aki = array_diff($aki, array($i));
-                            $aki = array_values($aki);
-                            $priority = array_diff($priority, array($priority[$rand]));
-                            $priority = array_values($priority);
-                            continue;
-                        }
+                    if (in_array(($i % $col), $priority_seat_col)) {
+                        $seat[$i] = $priority[$rand];
+                        $aki = array_diff($aki, array($i));
+                        $aki = array_values($aki);
+                        $priority = array_diff($priority, array($priority[$rand]));
+                        $priority = array_values($priority);
+                        continue;
                     }
                 } else {
                     // sit priority seats first then put them in $priority_seat_col and remove Item.
@@ -107,6 +108,7 @@
             $seat[$aki[$rand]] = $stuname;
             $aki = array_diff($aki, array($aki[$rand]));
             $aki = array_values($aki);
+
         }
 
         // make table
