@@ -9,7 +9,7 @@
 
 <body class="min-h-screen bg-slate-900 text-gray-50 max-h-screen">
     <div class="mx-auto">
-        <form class="text-center" action="/randomseatprint" method="post">
+        <form class="text-center" action="/randomseatprint" method="post" id='formg'>
             <div class='students shadow-xl shadow-fuchsia-900 bg-gradient-to-br to-purple-800 from-indigo-600 mx-auto mt-20 w-max rounded-xl px-6 py-6'>
                 <p>学生数を選択してください
                 <p>
@@ -57,12 +57,6 @@
                     <span class="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-purple-600 from-blue-500"></span>
                     <span class="relative">印刷ページ</span>
                 </button>
-                <button type="button" onclick='gotopage()' class="ml-20 px-5 py-2.5 relative rounded group font-medium text-white font-medium inline-block bg-gradient-to-br from-blue-400 to-blue-600 ">
-                    <span class="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-blue-400 to-blue-600"></span>
-                    <span class="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-blue-400 to-blue-600"></span>
-                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-blue-400 from-blue-600"></span>
-                    <span class="relative">データ保存</span>
-                </button>
                 <button type="button" ondblclick='clearlocal()' class="ml-20 px-5 py-2.5 relative rounded group font-medium text-white font-medium inline-block bg-gradient-to-br from-red-600 to-red-500">
                     <span class="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-red-600 to-red-500"></span>
                     <span class="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-red-600 to-red-500"></span>
@@ -73,7 +67,7 @@
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/static/js/randomseats.js?v=" + Date.now()+ Math.random()></script>
+    <script src="/static/js/randomseat.js"></script>
 </body>
 
 </html>

@@ -114,17 +114,18 @@ function dbck(e) {
 
 }
 
-function gotopage(){
+function clearlocal(){
     localStorage.clear();
-    var txt = $('#dm').val();
-    localStorage.setItem('dm',txt);
-    txt = $('#row').val();
-    localStorage.setItem('row',txt);
-    txt = $('#col').val();
-    localStorage.setItem('col',txt);
+    location.reload();
+    alert("全てが削除されました");
+}
+$('#formg').submit((e) => {
+    localStorage.clear();
+    var txt;
+    d = $('#dm').val();    
+    localStorage.setItem('dm',d);
     for(i = 1; i <= d; i++) {
         var tdinput = $('#tdinput'+i);
-        // IF Tdinput is priority
         if(tdinput.attr("name")=='priority[]'){
             localStorage.setItem('pri'+i,1);
         }else{
@@ -133,18 +134,16 @@ function gotopage(){
         txt = tdinput.val();
         localStorage.setItem('tdinput'+i,txt);
     }
-    for(i=0; i<studentseat;i++){
+    txt = $('#row').val();
+    localStorage.setItem('row',txt);
+    txt = $('#col').val();
+    localStorage.setItem('col',txt);
+    to = $('#row').val() * $('#col').val();
+    for(i=0; i<to;i++){
         var cb = $('#cb'+i);
         txt = cb.is(':checked');
         if(txt === true){
             localStorage.setItem('cb'+i,'checked');
         }
     }
-    alert("保存されました");
-}
-
-function clearlocal(){
-    localStorage.clear();
-    location.reload();
-    alert("全てがされました");
-}
+});
