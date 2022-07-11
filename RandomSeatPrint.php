@@ -11,10 +11,10 @@
     <div class="mx-auto text-center">
         <h1 class="font-bold bg-gray-400 w-fit m-auto mb-16 rounded-bl-md rounded-br-md" style="width: 1200px;">前</h1>
         <div class="h-full w-12 fixed top-0 left-0 bg-gray-600 text-gray-200 pt-5">
-            <h5 class="mt-96">廊<br><br><br><br>下<br><br><br><br><br>側</h5>
+            <h5 class="mt-96">廊<br><br><br><br>下<br><br><br><br>側</h5>
         </div>
         <div class="h-full w-12 fixed top-0 right-0 bg-gray-50 pt-5">
-            <h5 class="mt-96">窓<br><br><br><br><br><br><br><br><br><br>側</h5>
+            <h5 class="mt-96">窓<br><br><br><br><br><br><br><br>側</h5>
         </div>
         <div class="z-[-1] absolute inset-x-3/4 mr-96 text-center bg-gray-800 text-neutral-100 w-1/12 py-8 rounded-md">教卓</div>
         <?php
