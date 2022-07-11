@@ -52,7 +52,7 @@ function mkexl(row,col){
     studentseat = 0;
     $('.exl').html('');
     $('.dddi').html('使わない席を選んでください。<br><br>');
-    $('.exl').append("<div class='mx-auto rounded-lg bg-slate-600' style='width:"+col*1.2 +"%;'><h1>前</div><br>");
+    $('.exl').append("<div class='mx-auto rounded-lg bg-slate-600' style='width:"+col*1.5 +"%;'><h1>前</div><br>");
     let strs = '';
     for(i = 1; i <= row; i++) {
         strs+="<div>";
