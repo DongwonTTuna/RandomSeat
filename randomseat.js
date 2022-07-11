@@ -20,12 +20,12 @@ function maketable(e){
         if (lcol ===null){
             lcol = "";
             }
-            strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md shadow-indigo-500 rounded-xl px-2 py-2 bg-gradient-to-br";
+            strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md rounded-xl px-2 py-2 bg-gradient-to-br";
         prilcol = localStorage.getItem("pri"+i);
         if(prilcol=== null){
-            strs+=" to-indigo-400 from-indigo-500 ";
+            strs+=" to-indigo-400 from-indigo-500 shadow-indigo-500 ";
         }else{
-            strs += " to-red-400 from-red-500 ";
+            strs += " to-red-400 from-red-500 shadow-red-400 ";
         }
         strs += "hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300''>学生 #"+ str+"<br><input id='tdinput"+i+"' class=' shadow-md bg-gray-800 text-gray-50 rounded-lg my-2 mx-2 text-center focus-within:placeholder-shown:placeholder-gray-800' type='text' name='";
         if (prilcol==null){
