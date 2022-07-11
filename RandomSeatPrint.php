@@ -18,21 +18,24 @@
         </div>
         <div class="z-[-1] absolute inset-x-3/4 mr-96 text-center bg-gray-800 text-neutral-100 w-1/12 py-8 rounded-md">教卓</div>
         <?php
-        $alert = '<script type="text/javascript">alert("学生数や席数を再度確認してください。");document.location.href = "./i.php";</script>';
+        $alert = '<script type="text/javascript">alert("学生数や席数を再度確認してください。");document.location.href = "/randomseat";</script>';
         if (isset($_POST['stuname']) != true) {
             echo $alert;
         }
         $row = $_POST['row'];
         $col = $_POST['col'];
         $dm = $_POST['dm'];
+        $stunames = $_POST['stuname'];
         if ($dm > ($row * $col)) {
             echo $alert;
         }
-        $stunames = $_POST['stuname'];
         $aki = [];
         $seat = [];
         if (isset($_POST['useless']) == true) {
             $useless = $_POST['useless'];
+            if ($dm + sizeof($useless) > ($row * $col)) {
+            echo $alert;
+            }
         }
         if (isset($_POST['priority']) == true) {
             $priority = $_POST['priority'];
@@ -55,13 +58,13 @@
                     }
                 }
                 if ($k == 1) {
-                    array_push($seat, "空き席");
+                    $seat[] = "空き席";
                     continue;
                 }
             }
             //makes seats and append seatable seats to $aki
-            array_push($seat, "");
-            array_push($aki, $i);
+            $seat[] = "";
+            $aki[] = $i;
         }
 
         $priority_seat_col = [];
@@ -90,20 +93,20 @@
                     $seat[$i] = $priority[$rand];
                     $aki = array_diff($aki, array($i));
                     $aki = array_values($aki);
-                    array_push($priority_seat_col, $i);
+                    $priority_seat_col[] = $i;
                     $priority = array_diff($priority, array($priority[$rand]));
                     $priority = array_values($priority);
                     continue;
                 }
             }
+        }
 
+        foreach ($stunames as $stuname){
             //priority is empty or $seat[$i] is not the priority seat, set this seat for normal students.
-            $rand = rand(0, sizeof($stunames) - 1);
-            $seat[$i] = $stunames[$rand];
+            $rand = rand(0, sizeof($aki) - 1);
+            $seat[$aki[$rand]] = $stuname;
             $aki = array_diff($aki, array($aki[$rand]));
             $aki = array_values($aki);
-            $stunames = array_diff($stunames, array($stunames[$rand]));
-            $stunames = array_values($stunames);
         }
 
         // make table
