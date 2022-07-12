@@ -16,12 +16,12 @@ function maketable(e){
         if (i< 10){
             str = '0' + str;
         }
-        lcol = localStorage.getItem("tdinput"+i);
+        let lcol = localStorage.getItem("tdinput"+i);
         if (lcol ===null){
             lcol = "";
             }
             strs += "<td ondblclick='dbck(event)' class='whitespace-nowrap shadow-md rounded-xl px-2 py-2 bg-gradient-to-br";
-        prilcol = localStorage.getItem("pri"+i);
+        let prilcol = localStorage.getItem("pri"+i);
         if(prilcol=== null){
             strs+=" to-indigo-400 from-indigo-500 shadow-indigo-500 ";
         }else{
@@ -119,7 +119,7 @@ function clearlocal(){
     location.reload();
     alert("全てが削除されました");
 }
-$('#formg').submit((e) => {
+$('#formg').submit(() => {
     localStorage.clear();
     var txt;
     d = $('#dm').val();    
@@ -138,7 +138,7 @@ $('#formg').submit((e) => {
     localStorage.setItem('row',txt);
     txt = $('#col').val();
     localStorage.setItem('col',txt);
-    to = $('#row').val() * $('#col').val();
+    let to = $('#row').val() * $('#col').val();
     for(i=0; i<to;i++){
         var cb = $('#cb'+i);
         txt = cb.is(':checked');
