@@ -101,14 +101,18 @@ function dbck(e) {
     if (e.target.classList.contains("to-indigo-400")){
         $(e.target).removeClass("to-indigo-400");
         $(e.target).removeClass("from-indigo-500");
+        $(e.target).removeClass("shadow-indigo-500");
         $(e.target).addClass("from-red-500");
         $(e.target).addClass("to-red-400");
+        $(e.target).addClass("shadow-red-400");
         $(e.target.querySelector('input')).attr('name','priority[]');
     } else{
         $(e.target).removeClass("from-red-500");
         $(e.target).removeClass("to-red-400");
+        $(e.target).removeClass("shadow-red-400");
         $(e.target).addClass("to-indigo-400");
         $(e.target).addClass("from-indigo-500");
+        $(e.target).addClass("shadow-indigo-500");
         $(e.target.querySelector('input')).attr('name','stuname[]');
     }
 
