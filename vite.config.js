@@ -16,9 +16,9 @@ export default defineConfig({
             extType = "img";
           }
           if (extType === "css") {
-            return `static/css/randomseat-style.css`;
+            return `static/randomseat/css/style.css`;
           }
-          return `static/${extType}/randomseat-[name][extname]`;
+          return `static/randomseat/${extType}/[name][extname]`;
         },
       },
     },
