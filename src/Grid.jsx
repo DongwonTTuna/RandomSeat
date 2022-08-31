@@ -24,7 +24,16 @@ export default function Grid() {
   if (data.col <= 3) data.col = 4;
   if (data.col % 2 === 1) data.col += 1;
   let col = data["col"] / 2;
-
+  let gridcol = "";
+  try{
+    for(let i = 1; i<col; i++){
+     gridcol += '1fr 1.2fr '
+    }
+  }finally{
+    gridcol += '1fr 1fr'
+  }
+  
+  console.log(gridcol)
   function handleDragStart(event) {
     setActiveId(event.active.id);
   }
@@ -66,12 +75,12 @@ export default function Grid() {
           </ul>
         </div>
       </div>
-      <div className="relative mt-20 mb-48">
-        <div className="w-[98%] absolute py-2 rounded-md  bg-gradient-to-br from-violet-400 to-violet-500">
+      <div className="mt-20 mb-20">
+        <div className="w-[100%] py-2 rounded-md bg-gradient-to-br from-violet-400 to-violet-500">
           前
         </div>
       </div>
-      <div className=" mx-auto hue-rotate-15 ml-[2px]">
+      <div className=" mx-auto hue-rotate-15 ">
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -83,7 +92,7 @@ export default function Grid() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: `repeat(${col},1fr 1.2fr`,
+                gridTemplateColumns: `${gridcol}`,
                 gridGap: 8,
                 padding: 10,
               }}

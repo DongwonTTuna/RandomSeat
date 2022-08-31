@@ -112,7 +112,7 @@ export default function App() {
   return (
     <div className="App">
       <form className="text-center">
-        <div className="students relative  shadow-xl w-max m-auto mt-16 shadow-fuchsia-900 bg-gradient-to-br to-purple-800 from-indigo-600 rounded-xl pl-6 py-6">
+        <div className="students relative  shadow-xl w-max m-auto mt-16 shadow-fuchsia-900 bg-gradient-to-br to-purple-800 from-indigo-600 rounded-xl px-6 py-6">
           <div className="inline-block py-4 w-72 rounded-lg bg-gradient-to-br from-blue-400 shadow-violet-800 to-violet-600 shadow-md">
             <div className="mb-2">
               席数 :
