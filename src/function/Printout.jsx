@@ -35,7 +35,6 @@ const ShowItem = (props) => {
     }
     item.push(<tr key={Math.random()}>{itm}</tr>);
   }
-  console.log(item);
   return item;
 };
 
