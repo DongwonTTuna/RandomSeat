@@ -45,7 +45,7 @@ export default function Printout(props) {
         <h1 className="absolute font-bold bg-gray-400 w-full m-auto mb-16 rounded-b-md">
           前
         </h1>
-        <div className="absolute top-24 ml-[80%] bg-gray-800 text-neutral-100 w-36 py-10 rounded-md">
+        <div className="absolute top-24 ml-[75%] bg-gray-800 text-neutral-100 w-36 py-10 rounded-md">
           教卓
         </div>
         <div className="flex justify-between w-full items-stretch">
@@ -96,7 +96,7 @@ export function ForA4(props) {
       <h1 className="absolute font-bold bg-gray-400 w-full m-auto mb-16 rounded-b-md">
         前
       </h1>
-      <div className="absolute top-28 ml-[80%] bg-gray-800 text-neutral-100 w-36 py-10 rounded-md">
+      <div className="absolute top-28 ml-[75%] bg-gray-800 text-neutral-100 w-36 py-10 rounded-md">
         教卓
       </div>
       <div className="flex justify-between h-max items-stretch">
