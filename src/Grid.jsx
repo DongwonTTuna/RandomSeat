@@ -25,15 +25,14 @@ export default function Grid() {
   if (data.col % 2 === 1) data.col += 1;
   let col = data["col"] / 2;
   let gridcol = "";
-  try{
-    for(let i = 1; i<col; i++){
-     gridcol += '1fr 1.2fr '
+  try {
+    for (let i = 1; i < col; i++) {
+      gridcol += "1fr 1.2fr ";
     }
-  }finally{
-    gridcol += '1fr 1fr'
+  } finally {
+    gridcol += "1fr 1fr";
   }
-  
-  console.log(gridcol)
+
   function handleDragStart(event) {
     setActiveId(event.active.id);
   }
