@@ -22,8 +22,8 @@ export default function Grid() {
   const [items, setItems] = useState(Data((state) => state.items));
   const [update, SetUpdate] = useState(0);
   if (data.col <= 3) data.col = 4;
-  if (data.col % 2 === 1) data.col += 1;
-  let col = data["col"] / 2;
+  if (data.col % 2 === 1) data.col = parseInt(data.col) + 1;
+  let col = data.col / 2;
   let gridcol = "";
   try {
     for (let i = 1; i < col; i++) {
@@ -70,6 +70,9 @@ export default function Grid() {
             </li>
             <li>
               <h5>※&emsp;座席をダブルクリックすることで色を変更できます</h5>
+            </li>
+            <li>
+              <h5>※&emsp;列は偶数に変換されます。</h5>
             </li>
           </ul>
         </div>

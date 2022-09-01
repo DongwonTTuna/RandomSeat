@@ -51,13 +51,13 @@ export function GridCell(props) {
       props.val.mode === 0
     ) {
       pclass += " student student-pstyle";
-      cchild += " bg-indigo-400";
+      cchild += " bg-indigo-400 hover:bg-indigo-500";
     } else if ( props.val.mode === 1) {
       pclass += " useless useless-pstyle";
       invi = "invisible";
     } else if ( props.val.mode === 2) {
       pclass += " priority priority-pstyle";
-      cchild += " bg-blue-400";
+      cchild += " bg-blue-400 hover:bg-blue-500";
     }
   return (
     <div
@@ -98,8 +98,8 @@ export function OnlyCell(props) {
   cchild += document
     .getElementById(props.val)
     .classList.contains("student")
-    ? " bg-indigo-400 "
-    : " bg-blue-400 ";
+    ? " bg-indigo-500 "
+    : " bg-blue-500 ";
   let lcol = document.getElementById("input" + props.val).value;
   return (
     <div className={cparent}>

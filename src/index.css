@@ -22,7 +22,7 @@ body {
     @apply whitespace-nowrap w-max relative  shadow-md rounded-xl px-2 py-8 bg-gradient-to-br hover:cursor-grab hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300;
   }
   .cchild {
-    @apply rounded-lg w-max absolute right-2 top-2 p-1 pb-2 pl-[6px] ;
+    @apply rounded-lg w-max absolute right-2 top-2 p-1 pb-2 pl-[6px] hover:shadow-inner;
   }
   .inputclass{
     @apply w-28 shadow-md bg-gray-800 text-gray-50 rounded-lg text-center focus-within:placeholder-shown:placeholder-gray-800;
