@@ -85,7 +85,6 @@ class Function {
   };
   ConfirmNumbers = (e) => {
     e.preventDefault();
-    console.log(this.data);
     let tempcol = document.getElementById("maincol").value;
     let tempnum = document.getElementById("mainnum").value;
     if (this.num === tempnum && this.data.col === tempnum) return;
