@@ -33,10 +33,6 @@ export default function MakePdf() {
       width: "95%",
       heightAuto: false,
       customClass: {
-        container: "h-[95vh+20px] bg-gray-100 ",
-        popup: " h-[95vh+20px] w-full !block p-1",
-        htmlContainer: "min-h-[900px] h-[92vh]  ",
-        actions: "flex m-0 items-center w-full ",
         denyButton: "w-32 h-[45px] p-0 whitespace-nowrap mr-96",
         confirmButton: "w-32 h-[45px] whitespace-nowrap",
       },
