@@ -30,7 +30,7 @@ export default function MakePdf() {
       }
     }
     MySwal.fire({
-      width: "95%",
+      width: "max-content",
       heightAuto: false,
       customClass: {
         denyButton: "w-32 h-[45px] p-0 whitespace-nowrap mr-96",
