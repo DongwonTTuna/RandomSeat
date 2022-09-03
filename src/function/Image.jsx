@@ -35,6 +35,7 @@ export default function MakePdf() {
       customClass: {
         denyButton: "w-32 h-[45px] p-0 whitespace-nowrap mr-96",
         confirmButton: "w-32 h-[45px] whitespace-nowrap",
+        htmlContainer: "overflow-scroll max-h-[1000px]",
       },
       showDenyButton: true,
       confirmButtonText: "ダウンロード",

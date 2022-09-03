@@ -41,11 +41,11 @@ const ShowItem = (props) => {
 export default function Printout(props) {
   return (
     <>
-      <section className="relative min-h-full h-max min-w-full w-max text-center bg-gray-100 rounded-md">
+      <section className="relative min-w-full w-max text-center bg-gray-100 rounded-md ">
         <h1 className="absolute font-bold bg-gray-400 w-full m-auto mb-16 rounded-b-md">
           前
         </h1>
-        <div className="absolute top-24 ml-[75%] bg-gray-800 text-neutral-100 w-36 py-10 rounded-md">
+        <div className="absolute top-24 right-[200px] bg-gray-800 text-neutral-100 w-36 py-10 rounded-md">
           教卓
         </div>
         <div className="flex justify-between w-full items-stretch">
