@@ -50,7 +50,7 @@ export default class App extends React.Component {
                   <div className="leading-7">
                     <li>
                       &emsp;・ シャッフル後、Drag &
-                      Dropを行っても結果に反映されます。
+                      Dropを行っても出力時に反映されます。
                     </li>
                     <li>
                       &emsp;・ Drag & Drop後のデータも自動的に保存されます。
