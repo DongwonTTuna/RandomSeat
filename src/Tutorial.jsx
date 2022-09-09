@@ -49,7 +49,7 @@ export default class App extends React.Component {
                   <p className="text-2xl mt-14">特徴</p>
                   <div className="leading-7">
                     <li>
-                      &emsp;・ シャッフル後、Drag &
+                      &emsp;・ シャッフルの後にDrag &
                       Dropを行っても出力時に反映されます。
                     </li>
                     <li>
