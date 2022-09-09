@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Grid from "./Grid";
 import Image from "./function/Image";
 import Data from "./Data";
+import Tutorial from "./Tutorial"
 if (localStorage.getItem("data") === null) {
   localStorage.setItem(
     "data",
@@ -17,6 +18,10 @@ if (localStorage.getItem("data") === null) {
     })
   );
 }
+
+const tutorial = localStorage.getItem("tutorial")
+//localStorage.setItem("tutorial","done")
+
 class Function {
   constructor(data, setData, update, forceUpdate, col, num) {
     this.data = data;
@@ -117,9 +122,11 @@ export default function App() {
   const setData = Data((state) => state.setData);
   const [update, forceUpdate] = useState(false);
   const F = new Function(data, setData, update, forceUpdate, col, num);
+  console.log(tutorial)
   return (
     <div className="App">
       <form className="text-center">
+        {tutorial === null ? <Tutorial/> : "" }
         <div className="students relative  shadow-xl w-max m-auto mt-16 shadow-fuchsia-900 bg-gradient-to-br to-purple-800 from-indigo-600 rounded-xl px-6 py-6">
           <div className="inline-block py-4 w-56 rounded-lg bg-gradient-to-br from-blue-400 shadow-violet-800 to-violet-600 shadow-md whitespace-nowrap">
             <div className="flex items-center">
