@@ -26,7 +26,7 @@ body {
 
 @layer components {
   .div-style{
-    @apply whitespace-nowrap w-max relative  shadow-md rounded-xl px-2 py-8 bg-gradient-to-br hover:cursor-grab hover:shadow-inner transition-all duration-200 hover:ease-out hover:shadow-indigo-800 placeholder-gray-300;
+    @apply whitespace-nowrap w-max relative  shadow-md rounded-xl px-2 py-8 bg-gradient-to-br hover:cursor-grab hover:shadow-inner transition-all duration-200 hover:ease-out hover:bg-[#96bffd] placeholder-gray-300;
   }
   .cchild {
     @apply rounded-lg w-max absolute right-2 top-2 p-1 pb-2 pl-[6px] hover:shadow-inner;
@@ -35,12 +35,12 @@ body {
     @apply w-28 shadow-md bg-gray-800 text-gray-50 rounded-lg text-center focus-within:placeholder-shown:placeholder-gray-800;
   }
   .student-pstyle{
-    @apply to-indigo-400 from-indigo-500 shadow-indigo-500;
+    @apply to-[#bde5fe] from-[#c2d8f8] shadow-[#B8C6DB] ;
   }
   .priority-pstyle{
-    @apply to-blue-500 from-blue-400 shadow-blue-700;
+    @apply to-[#f7fea9] from-[#fbf4a3] shadow-[#B8C6DB] ;
   }
   .useless-pstyle{
-    @apply from-red-500 to-red-400 shadow-red-400 text-transparent ;
+    @apply from-[#fa7474] to-[#ff9393] shadow-red-200 text-transparent ;
   }
 }

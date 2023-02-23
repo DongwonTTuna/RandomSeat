@@ -61,11 +61,11 @@ export default function Grid() {
   return (
     <>
       <div className="inform" id="inform">
-        <div className="w-fit p-2 mt-12 font-bold rounded-lg border-2 border-indigo-800">
+        <div className="w-fit p-2 mt-12 font-bold rounded-lg border-2 border-[#a1c5fa]">
           <ul className="text-left">
             <li>
               <h5>
-                ※&emsp;赤の座席は使用しない席を、青は前に座らせたい人のことを表しています。
+                ※&emsp;赤の座席は使用しない席を、黄色は前に座らせたい人のことを表しています。
               </h5>
             </li>
             <li>
@@ -78,11 +78,11 @@ export default function Grid() {
         </div>
       </div>
       <div className="mt-20 mb-20">
-        <div className="w-[100%] py-2 rounded-md bg-gradient-to-br from-violet-400 to-violet-500">
+        <div className="w-[100%] py-2 rounded-md bg-gradient-to-br to-[#cfe3ef] from-[#b1cef9]">
           前
         </div>
       </div>
-      <div className=" mx-auto hue-rotate-15 ">
+      <div className=" mx-auto ">
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
