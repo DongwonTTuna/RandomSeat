@@ -9,7 +9,7 @@ export default function MakePdf() {
   let num;
   let tdinputz = {};
   let mode = {};
-  const DoPrintout = (e) => {
+  const DoPrintout = (e: any) => {
     e.preventDefault();
     data = JSON.parse(localStorage.getItem("data"));
     num = data.num;

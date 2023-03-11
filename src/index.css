@@ -1,12 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@font-face{
-  font-family: 'NotoSansJP';
-  src: url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Regular.woff2) format('woff2');
-  font-weight:normal;
-  font-style:normal;
- }
+@font-face {
+  font-family: "NotoSansJP";
+  src: url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Regular.woff2)
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   -webkit-touch-callout: none;
@@ -16,7 +17,7 @@ body {
   -ms-user-select: none;
   user-select: none;
   margin: 0;
-  font-family: 'NotoSansJP';
+  font-family: "NotoSansJP";
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,22 +26,67 @@ body {
 }
 
 @layer components {
-  .div-style{
+  .wrapper {
+    @apply min-w-full w-fit bg-gradient-to-tr from-[#F5F7FA] to-[#B8C6DB] min-h-screen;
+  }
+  .content {
+    @apply relative shadow-xl w-max flex flex-col items-center gap-5 justify-center m-auto top-12 shadow-[#B8C6DB] bg-gradient-to-br from-[#cfe3ef] to-[#F5F7FA] rounded-xl p-6;
+  }
+  .valuecontent {
+    @apply w-56 h-40 flex justify-around items-center rounded-lg bg-gradient-to-br shadow-[#B8C6DB] to-[#cfe3ef] from-[#F5F7FA] shadow-md whitespace-nowrap;
+  }
+  .valuebox {
+    @apply flex flex-col justify-around gap-6 items-end;
+  }
+  .valuebox input {
+    @apply bg-white ml-2 rounded-md w-8 text-center;
+  }
+  .valuebox input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .valuebox input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+  }
+  .imageIcon {
+    @apply absolute top-10 right-20;
+  }
+
+  .div-style {
     @apply whitespace-nowrap w-max relative  shadow-md rounded-xl px-2 py-8 bg-gradient-to-br hover:cursor-grab hover:shadow-inner transition-all duration-200 hover:ease-out hover:bg-[#96bffd] placeholder-gray-300;
   }
   .cchild {
-    @apply rounded-lg w-max absolute right-2 top-2 p-1 pb-2 pl-[6px] hover:shadow-inner;
+    @apply rounded-lg w-max absolute right-2 top-2 p-[3px] pb-2 pr-[6px] pl-[6px] hover:shadow-inner;
   }
-  .inputclass{
-    @apply w-28 shadow-md bg-white text-gray-50 rounded-lg text-center focus-within:placeholder-shown:placeholder-gray-800;
+  .inputclass {
+    @apply w-28 shadow-md bg-white text-gray-800 rounded-lg text-center focus-within:placeholder-shown:placeholder-gray-800;
   }
-  .student-pstyle{
-    @apply to-[#bde5fe] from-[#c2d8f8] shadow-[#B8C6DB] ;
+  .student-pstyle {
+    @apply to-[#bde5fe] from-[#c2d8f8] shadow-[#B8C6DB];
   }
-  .priority-pstyle{
-    @apply to-[#f7fea9] from-[#fbf4a3] shadow-[#B8C6DB] ;
+  .priority-pstyle {
+    @apply to-[#dcdcdc] from-[#dcdcdc] shadow-[#b6b6b684];
   }
-  .useless-pstyle{
-    @apply from-[#fa7474] to-[#ff9393] shadow-red-200 text-transparent ;
+  .student-handle{
+    @apply bg-[#a5c9ff] hover:bg-[#96bffd];
+  }
+  .priority-handle{
+    @apply bg-[#cacaca] border-[1px] border-[#e4e4e4] hover:bg-[#c1c1c1];
+  }
+  .useless-pstyle {
+    @apply from-[#fa7474] to-[#ff9393] shadow-red-200 text-transparent;
+  }
+  .gridwrapper {
+    @apply min-w-full w-fit p-2 mt-12 rounded-lg;
+  }
+  .griditem{
+    @apply flex flex-col items-center gap-4;
+  }
+  .inform {
+    @apply w-full mt-14
+  }
+  .informfront{
+    @apply w-full text-center py-2 rounded-md bg-gradient-to-br to-[#cfe3ef] from-[#b1cef9] mt-10 mb-20;
   }
 }
