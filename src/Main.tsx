@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Grid from "./Grid";
-import PrintOut from "./function/Image";
+import PrintOut from "./ImageOut";
 import ChangeInput from "./ChangeInput";
 
 export interface GridItems {
@@ -99,17 +99,17 @@ export default function App() {
       <div className="content">
         <ChangeInput Data={Data} setData={setData} />
         <div className="imageIcon">
-          <PrintOut key={Math.random()} />
+          <PrintOut Data={Data} key={Math.random()} />
         </div>
         <div className="inform">
           <ul className="text-left">
             <li>
               <h5>
-                ※&emsp;赤の座席は使用しない席を、黄色は前に座らせたい人のことを表しています。
+                ※&emsp;赤の座席は使用しない席を、グレーは前に座らせたい人のことを示します。
               </h5>
             </li>
             <li>
-              <h5>※&emsp;座席をダブルクリックすることで色を変更できます</h5>
+              <h5>※&emsp;座席を席をダブルクリックすることで色を変更できます</h5>
             </li>
             <li>
               <h5>※&emsp;列は偶数に変換されます。</h5>

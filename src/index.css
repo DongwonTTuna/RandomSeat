@@ -66,13 +66,13 @@ body {
     @apply to-[#bde5fe] from-[#c2d8f8] shadow-[#B8C6DB];
   }
   .priority-pstyle {
-    @apply to-[#dcdcdc] from-[#dcdcdc] shadow-[#b6b6b684];
+    @apply to-[#ffffff] from-[#efefef] shadow-[#b6b6b684];
   }
-  .student-handle{
+  .student-handle {
     @apply bg-[#a5c9ff] hover:bg-[#96bffd];
   }
-  .priority-handle{
-    @apply bg-[#cacaca] border-[1px] border-[#e4e4e4] hover:bg-[#c1c1c1];
+  .priority-handle {
+    @apply bg-[#e1e1e1] border-[1px] border-[#e4e4e4] hover:bg-[#d0d0d0];
   }
   .useless-pstyle {
     @apply from-[#fa7474] to-[#ff9393] shadow-red-200 text-transparent;
@@ -80,13 +80,45 @@ body {
   .gridwrapper {
     @apply min-w-full w-fit p-2 mt-12 rounded-lg;
   }
-  .griditem{
+  .griditem {
     @apply flex flex-col items-center gap-4;
   }
   .inform {
-    @apply w-full mt-14
+    @apply w-full mt-14;
   }
-  .informfront{
-    @apply w-full text-center py-2 rounded-md bg-gradient-to-br to-[#cfe3ef] from-[#b1cef9] mt-10 mb-20;
+  .informfront {
+    @apply w-full text-center py-2 rounded-md bg-gradient-to-br to-[#cfe3ef] from-[#b1cef9] mt-10 mb-10;
+  }
+  .imageSection {
+    @apply absolute z-10 top-0 h-full w-full bg-[#42424282] flex items-center justify-center;
+  }
+  #imageWrapper {
+    @apply relative w-fit h-fit text-center rounded-md bg-gray-100 p-10;
+  }
+  .imgFront {
+    @apply mx-auto font-bold bg-gray-400 w-full rounded-md;
+  }
+  .imgContent {
+    @apply flex justify-between mt-[5%] gap-x-20;
+  }
+  .imgVertical {
+    @apply w-12 flex items-center justify-center tracking-[40px];
+    writing-mode: vertical-rl;
+  }
+  .imgGrid{
+    @apply grid gap-x-[10px] gap-y-16 my-16;
+  }
+  .privCell{
+    @apply w-28 h-28 bg-gray-300 rounded-md flex items-center justify-center;
+  }
+  .imgButtonDiv{
+    @apply absolute bottom-10 mx-auto w-80 flex justify-between bg-[#ffffff45] p-5 rounded-lg;
+  }
+  .imgConfirmButton{
+    @apply bg-blue-300 text-white h-20 w-28 rounded-md hover:drop-shadow-[0_0_25px_rgba(166,255,249,0.35)]  transition-all duration-500;
+  }
+  .imgCancelButton{
+    @apply bg-red-300 text-white h-20 w-28 rounded-md hover:drop-shadow-[0_0_35px_rgba(255,167,181,0.35)]  transition-all duration-500;
+
   }
 }

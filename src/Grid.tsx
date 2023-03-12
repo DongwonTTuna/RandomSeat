@@ -11,8 +11,9 @@ import {
   rectSwappingStrategy,
   arraySwap,
 } from "@dnd-kit/sortable";
-import { GridCell, OnlyCell } from "./function/GridCell";
 import { createPortal } from "react-dom";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import type { DataType, GridItems } from "./Main";
 
 interface PropItems {
@@ -20,11 +21,24 @@ interface PropItems {
   Data: DataType;
 }
 
-
 export default function Grid(props: PropItems) {
   const [activeId, setActiveId] = useState(null);
   const sensors = [useSensor(PointerSensor)];
 
+  const gridCol = (() => {
+    let str = "1fr ";
+    for (let i = 1; i < props.Data.col; i++) {
+      if (i % 2 === 0) {
+        str += "1fr ";
+      } else {
+        str += "1.2fr ";
+      }
+    }
+    if (str.endsWith("1.2fr ")) {
+      str = str.slice(0, -6) + "1fr";
+    }
+    return str;
+  })();
 
   // if the user started dragging.
   const handleDragStart = (event: any) => {
@@ -73,14 +87,14 @@ export default function Grid(props: PropItems) {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: `repeat(${props.Data.col}, 1fr)`,
+                  gridTemplateColumns: gridCol,
                   gridGap: 8,
                   padding: 10,
-                  margin:"0 auto",
+                  margin: "0 auto",
                   width: "fit-content",
                 }}
               >
-                {props.Data.items.map((value) => {
+                {props.Data.items.map( (value) => {
                   return (
                     <GridCell
                       AllData={props.Data}
@@ -96,7 +110,7 @@ export default function Grid(props: PropItems) {
               <>
                 {activeId !== null ? (
                   <DragOverlay adjustScale={true}>
-                    <OnlyCell Data={props.Data} index={activeId} />
+                    <HoverCell Data={props.Data} index={activeId} />
                   </DragOverlay>
                 ) : (
                   <></>
@@ -110,3 +124,118 @@ export default function Grid(props: PropItems) {
     </>
   );
 }
+
+interface cssStyleType {
+  [key: number]: { pclass: string; cchild: string };
+}
+
+const cssStyles: cssStyleType = {
+  "0": {
+    pclass: "mode div-style student student-pstyle",
+    cchild: "cchild student-handle",
+  },
+  "2": {
+    pclass: "mode div-style useless useless-pstyle",
+    cchild: "hidden",
+  },
+  "1": {
+    pclass: "mode div-style priority priority-pstyle",
+    cchild: "cchild priority-handle",
+  },
+};
+interface propItems {
+  key: number;
+  Data: GridItems;
+  setData: React.Dispatch<React.SetStateAction<DataType>>;
+  AllData: DataType;
+}
+
+const GridCell = (props: propItems) => {
+  // Double Click Event, need to save the value to localStorage.setItem('data, JSON.stringfy(dta))
+  const onDoubleClicked = () => {
+    let tempData: Array<GridItems> = props.AllData.items;
+    const index = tempData.findIndex((item) => item.id === props.Data.id);
+
+    tempData[index] = {
+      ...tempData[index],
+      mode: props.Data.mode === 0 ? 1 : props.Data.mode === 1 ? 2 : 0,
+    };
+    props.setData({ ...props.AllData, items: tempData });
+  };
+
+  // Input changed Event, need to udpate the name data of the Grid Items.
+  const onInputChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let tempData: Array<GridItems> = props.AllData.items;
+    const index = tempData.findIndex((item) => item.id === props.Data.id);
+
+    tempData[index] = { ...tempData[index], name: e.target.value };
+    props.setData({ ...props.AllData, items: tempData });
+  };
+
+  // declare the variables from the @DND-KIT
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: props.Data.id });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      onDoubleClick={() => onDoubleClicked()}
+      className={cssStyles[props.Data.mode].pclass}
+    >
+      <div
+        className={props.Data.mode === 2 ? "griditem invisible" : "griditem"}
+      >
+        <p>学生</p>
+        <div
+          {...listeners}
+          {...attributes}
+          className={cssStyles[props.Data.mode].cchild}
+          tabIndex={-1}
+        >
+          ⣿
+        </div>
+        <input
+          onChange={(e) => onInputChanged(e)}
+          className="inputclass"
+          type="text"
+          placeholder="お名前"
+          defaultValue={props.Data.name}
+        />
+      </div>
+    </div>
+  );
+};
+
+interface propItems2 {
+  index: number;
+  Data: DataType;
+}
+
+const HoverCell = (props: propItems2) => {
+  if (props.index === null) return <></>;
+  const GridItem = props.Data.items.findIndex(
+    (item) => item.id === props.index + 1
+  );
+  return (
+    <div
+      className={`${
+        cssStyles[props.Data.items[GridItem].mode].pclass
+      } hue-rotate-15 hover:shadow-none`}
+    >
+      <p className="inline-block w-full text-center mb-2">学生</p>
+      <div className={cssStyles[props.Data.items[GridItem].mode].cchild}>⣿</div>
+      <br />
+      <input
+        className="inputclass"
+        type="text"
+        placeholder="お名前"
+        defaultValue={props.Data.items[GridItem].name}
+      />
+    </div>
+  );
+};
