@@ -105,7 +105,7 @@ export default function App() {
           <ul className="text-left">
             <li>
               <h5>
-                ※&emsp;赤の座席は使用しない席を、グレーは前に座らせたい人のことを示します。
+                ※&emsp;赤の座席は使用しない席を、白は前に座らせたい人のことを示します。
               </h5>
             </li>
             <li>
