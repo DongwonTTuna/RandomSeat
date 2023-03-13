@@ -26,18 +26,10 @@ export default function Grid(props: PropItems) {
   const sensors = [useSensor(PointerSensor)];
 
   const gridCol = (() => {
-    let str = "1fr ";
-    for (let i = 1; i < props.Data.col; i++) {
-      if (i % 2 === 0) {
-        str += "1fr ";
-      } else {
-        str += "1.2fr ";
-      }
-    }
-    if (str.endsWith("1.2fr ")) {
-      str = str.slice(0, -6) + "1fr";
-    }
-    return str;
+    const str = Array.from({ length: props.Data.col }, (_, i) =>
+      i % 2 === 0 ? "1fr" : "1.2fr"
+    ).join(" ");
+    return str.endsWith("1.2fr") ? str.slice(0, -5) + "1fr" : str;
   })();
 
   // if the user started dragging.
@@ -94,7 +86,7 @@ export default function Grid(props: PropItems) {
                   width: "fit-content",
                 }}
               >
-                {props.Data.items.map( (value) => {
+                {props.Data.items.map((value) => {
                   return (
                     <GridCell
                       AllData={props.Data}
