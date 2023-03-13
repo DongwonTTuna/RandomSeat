@@ -31,7 +31,6 @@ export default function Grid(props: PropItems) {
     ).join(" ");
     return str.endsWith("1.2fr") ? str.slice(0, -5) + "1fr" : str;
   })();
-
   // if the user started dragging.
   const handleDragStart = (event: any) => {
     if (event.active.id === null) return;
