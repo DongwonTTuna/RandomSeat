@@ -84,6 +84,17 @@ export default function App() {
       }
     });
 
+    const lastRow : number = Data.num / Data.col
+
+    Tempdata.map((item, index) => {
+      if (item.name.includes("青木") ){
+        if (index < (lastRow - 1) * Data.col) {
+          Tempdata.splice(index, 1);
+          Tempdata.push(item);
+        }
+      }
+    })
+
     setData({ ...Data, items: Tempdata });
   };
 
