@@ -58,11 +58,11 @@ export default function ChangeInput(props: PropsItems) {
       <div className="valuebox">
         <div>
           席数 :
-          <input type="number" defaultValue={props.Data.num} ref={totalNum} />
+          <input type="number" defaultValue={props.Data.num} ref={totalNum} placeholder="8" />
         </div>
         <div>
           列 :
-          <input type="number" defaultValue={props.Data.col} ref={rowNum} />
+          <input type="number" defaultValue={props.Data.col} ref={rowNum} placeholder="4" />
         </div>
       </div>
 

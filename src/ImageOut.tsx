@@ -28,6 +28,7 @@ export default function MakeImage(props: propsItems) {
           decoding="async"
           src="/printer.svg"
           placeholder="Printer"
+          alt="Printer"
         />
       </button>
       {toggleShow
