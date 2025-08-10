@@ -54,8 +54,8 @@ export default function ChangeInput(props: PropsItems) {
   };
 
   return (
-    <div className="valuecontent">
-      <div className="valuebox">
+    <div className="value-input-section">
+      <div className="value-input-box">
         <div>
           席数 :
           <input type="number" defaultValue={props.Data.num} ref={totalNum} placeholder="8" />
@@ -68,7 +68,7 @@ export default function ChangeInput(props: PropsItems) {
 
       <div>
         <button
-          className="p-3 bg-[#cbe0ff] shadow-md hover:shadow-inner rounded-md"
+          className="confirm-button"
           onClick={(e) => {
             e.preventDefault();
             checkValidity();

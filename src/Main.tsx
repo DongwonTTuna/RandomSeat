@@ -101,11 +101,11 @@ export default function App() {
     <div className="wrapper">
       <div className="content">
         <ChangeInput Data={Data} setData={setData} />
-        <div className="imageIcon">
+        <div className="print-icon">
           <PrintOut Data={Data} key={Math.random()} />
         </div>
-        <div className="inform">
-          <ul className="text-left">
+        <div className="info-box">
+          <ul>
             <li>
               <h5>
                 ※&emsp;赤の座席は使用しない席を、白は前に座らせたい人のことを示します。
@@ -120,29 +120,20 @@ export default function App() {
           </ul>
         </div>
         <Grid setData={setData} Data={Data} />
-        <div className="inline-block mt-16">
+        <div className="button-container">
           <button
             type="button"
             onClick={() => Shuffle()}
-            className="px-5 py-2.5 relative rounded group font-medium text-white inline-block"
+            className="shuffle-button"
           >
-            <span className="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br to-[#cfe3ef] from-[#F5F7FA]"></span>
-            <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm to-[#cfe3ef] from-[#F5F7FA]"></span>
-            <span className="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br from-[#cbe0ff] to-[#cbe0ff]"></span>
-            <span className="relative">シャッフル</span>
+            シャッフル
           </button>
           <button
             type="button"
             onDoubleClick={() => ClearLocal()}
-            className="ml-20 px-5 py-2.5 relative rounded group font-medium text-white inline-block bg-gradient-to-br from-red-300 to-red-200"
+            className="clear-button"
           >
-            <span className="z-10 absolute -translate-x-4 -translate-y-[50px]  text-sm whitespace-nowrap bg-slate-800 p-1 rounded-md invisible group-hover:visible">
-              ダブルクリック!
-            </span>
-            <span className="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-red-600 to-red-500"></span>
-            <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-red-600 to-red-500"></span>
-            <span className="absolute inset-0 w-full h-full transition duration-200 ease-out rounded bg-gradient-to-br to-red-400 from-red-300"></span>
-            <span className="relative">データ削除</span>
+            データ削除
           </button>
         </div>
       </div>

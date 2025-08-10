@@ -13,12 +13,12 @@ export default function MakeImage(props: propsItems) {
   return (
     <>
       <button
-        className="group relative"
+        className="group"
         onClick={(e) => {
           setToggle(true);
         }}
       >
-        <span className=" absolute bottom-[-60px] -right-[4px] whitespace-nowrap invisible group-hover:visible p-2 w-max  bg-gray-100 rounded-md">
+        <span className="tooltip">
           出力
         </span>
         <img
@@ -77,19 +77,19 @@ const PreviewPage = (props: propsItem) => {
   console.log(gridCol);
   return (
     <section
-      className="imageSection"
+      className="image-preview-section"
       onClick={(e) => {
         if (e.currentTarget !== e.target) return;
         props.setToggle(false);
       }}
     >
       <div id="imageWrapper">
-        <h1 className="imgFront">前</h1>
-        <div className="imgContent">
-          <div className="imgVertical rounded-r-md bg-gray-600 text-gray-200">
+        <h1 className="image-header">前</h1>
+        <div className="image-content">
+          <div className="image-vertical-text">
             <h5>廊下側</h5>
           </div>
-          <div className="imgGrid" style={{ gridTemplateColumns: gridCol }}>
+          <div className="image-grid" style={{ gridTemplateColumns: gridCol }}>
             {props.Data.items.map((item, index) => {
               return (
                 <PreviewCell
@@ -101,17 +101,17 @@ const PreviewPage = (props: propsItem) => {
               );
             })}
           </div>
-          <div className="imgVertical rounded-l-md bg-white text-gray-600">
+          <div className="image-vertical-text">
             <h5>窓側</h5>
           </div>
         </div>
       </div>
-      <div className="imgButtonDiv">
-        <button className="imgConfirmButton" onClick={() => printOut()}>
+      <div className="image-button-container">
+        <button className="image-confirm-button" onClick={() => printOut()}>
           出力
         </button>
         <button
-          className="imgCancelButton"
+          className="image-cancel-button"
           onClick={() => props.setToggle(false)}
         >
           キャンセル
@@ -124,11 +124,11 @@ const PreviewPage = (props: propsItem) => {
 const PreviewCell = (props: GridItems) => {
   return (
     <div
-      className={
-        props.mode === 2 ? "privCell bg-gray-500" : "privCell bg-gray-300"
-      }
+      className={`preview-cell ${
+        props.mode === 2 ? "empty" : "filled"
+      }`}
     >
-      <p className={props.mode === 2 ? "invisible" : ""}>{props.name}</p>
+      <p className={props.mode === 2 ? "hidden" : ""}>{props.name}</p>
     </div>
   );
 };

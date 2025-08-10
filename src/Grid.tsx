@@ -62,9 +62,9 @@ export default function Grid(props: PropItems) {
 
   return (
     <>
-      <div className="gridwrapper">
-        <div className="informfront">前</div>
-        <div className="mx-auto">
+      <div className="grid-wrapper">
+        <div className="info-header">前</div>
+        <div>
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
@@ -123,16 +123,16 @@ interface cssStyleType {
 
 const cssStyles: cssStyleType = {
   "0": {
-    pclass: "mode div-style student student-pstyle",
-    cchild: "cchild student-handle",
+    pclass: "grid-cell student",
+    cchild: "drag-handle student",
   },
   "2": {
-    pclass: "mode div-style useless useless-pstyle",
+    pclass: "grid-cell useless",
     cchild: "hidden",
   },
   "1": {
-    pclass: "mode div-style priority priority-pstyle",
-    cchild: "cchild priority-handle",
+    pclass: "grid-cell priority",
+    cchild: "drag-handle priority",
   },
 };
 interface propItems {
@@ -180,7 +180,7 @@ const GridCell = (props: propItems) => {
       className={cssStyles[props.Data.mode].pclass}
     >
       <div
-        className={props.Data.mode === 2 ? "griditem invisible" : "griditem"}
+        className={props.Data.mode === 2 ? "grid-item-container hidden" : "grid-item-container"}
       >
         <p>学生</p>
         <div
@@ -193,7 +193,7 @@ const GridCell = (props: propItems) => {
         </div>
         <input
           onChange={(e) => onInputChanged(e)}
-          className="inputclass"
+          className="seat-name-input"
           type="text"
           placeholder="お名前"
           defaultValue={props.Data.name}
@@ -215,15 +215,13 @@ const HoverCell = (props: propItems2) => {
   );
   return (
     <div
-      className={`${
-        cssStyles[props.Data.items[GridItem].mode].pclass
-      } hue-rotate-15 hover:shadow-none`}
+      className={cssStyles[props.Data.items[GridItem].mode].pclass}
     >
-      <p className="inline-block w-full text-center mb-2">学生</p>
+      <p>学生</p>
       <div className={cssStyles[props.Data.items[GridItem].mode].cchild}>⣿</div>
       <br />
       <input
-        className="inputclass"
+        className="seat-name-input"
         type="text"
         placeholder="お名前"
         defaultValue={props.Data.items[GridItem].name}
