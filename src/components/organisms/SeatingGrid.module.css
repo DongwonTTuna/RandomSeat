@@ -1,15 +1,20 @@
 .wrapper {
-  min-width: 100%;
-  width: fit-content;
-  padding: 0.5rem;
-  margin-top: 3rem;
-  border-radius: 0.5rem;
+  margin-top: 1rem;
 }
 
 .grid {
   display: grid;
-  grid-gap: 8px;
+  gap: 10px;
   padding: 10px;
-  margin: 0 auto;
-  width: fit-content;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--primary-bg);
+}
+
+.infoHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--secondary-text);
 }

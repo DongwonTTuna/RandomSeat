@@ -67,7 +67,6 @@ const SeatingGrid: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className="info-header">前</div>
       <div
         className={styles.grid}
         style={{ gridTemplateColumns: gridCol }}

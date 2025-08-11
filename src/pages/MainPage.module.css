@@ -1,70 +1,55 @@
 .wrapper {
-  min-width: 100%;
-  width: fit-content;
-  background-image: linear-gradient(to top right, #F5F7FA, #B8C6DB);
-  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .content {
-  position: relative;
-  width: max-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
-  justify-content: center;
-  margin: auto;
-  top: 3rem;
-  box-shadow: 0 10px 15px -3px #B8C6DB, 0 4px 6px -4px #B8C6DB;
-  background-image: linear-gradient(to bottom right, #cfe3ef, #F5F7FA);
-  border-radius: 0.75rem;
-  padding: 1.5rem;
+  background-color: var(--secondary-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .printIcon {
   position: absolute;
-  top: 2.5rem;
-  right: 5rem;
+  top: 1rem;
+  right: 1rem;
 }
 
 .infoBox {
-  width: 100%;
-  margin-top: 3.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: var(--primary-bg);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.infoBox ul {
+  padding-left: 1rem;
+}
+
+.infoBox li {
+  margin-bottom: 0.5rem;
+  color: var(--secondary-text);
 }
 
 .infoHeader {
-  width: 100%;
   text-align: center;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-radius: 0.375rem;
-  background-image: linear-gradient(to bottom right, #cfe3ef, #b1cef9);
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--secondary-text);
 }
 
 .buttonContainer {
-  display: inline-block;
-  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
-.shuffleButton {
-  padding: 0.625rem 1.25rem;
-  position: relative;
-  border-radius: 0.25rem;
-  font-weight: 500;
-  color: white;
-  display: inline-block;
-  background-image: linear-gradient(to bottom right, #3b82f6, #60a5fa);
-}
-
+.shuffleButton,
 .clearButton {
-  margin-left: 5rem;
-  padding: 0.625rem 1.25rem;
-  position: relative;
-  border-radius: 0.25rem;
-  font-weight: 500;
-  color: white;
-  display: inline-block;
-  background-image: linear-gradient(to bottom right, #fca5a5, #f87171);
+  /* Styles will be handled by the Button component's CSS module */
 }

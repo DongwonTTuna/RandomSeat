@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import PreviewModal from '../organisms/PreviewModal';
-import styles from './PrintButton.module.css';
+import Button from '../atoms/Button';
 
 const PrintButton: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,17 +16,9 @@ const PrintButton: React.FC = () => {
 
   return (
     <>
-      <button className={styles.group} onClick={handleOpenModal}>
-        <span className={styles.tooltip}>出力</span>
-        <img
-          height={40}
-          width={40}
-          loading="eager"
-          decoding="async"
-          src="/printer.svg"
-          alt="Printer"
-        />
-      </button>
+      <Button onClick={handleOpenModal} variant="secondary">
+        プレビューと出力
+      </Button>
       {showModal && createPortal(
         <PreviewModal onClose={handleCloseModal} />,
         document.body

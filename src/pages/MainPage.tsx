@@ -25,36 +25,27 @@ const MainPage: React.FC = () => {
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <ChangeInputForm />
-          <div className={styles.printIcon}>
-            <PrintButton />
-          </div>
           <div className={styles.infoBox}>
             <ul>
-              <li>
-                <h5>
-                  ※&emsp;赤の座席は使用しない席を、白は前に座らせたい人のことを示します。
-                </h5>
-              </li>
-              <li>
-                <h5>※&emsp;座席を席をダブルクリックすることで色を変更できます</h5>
-              </li>
-              <li>
-                <h5>※&emsp;列は偶数に変換されます。</h5>
-              </li>
+              <li>※ 赤の座席は使用しない席を、白は前に座らせたい人のことを示します。</li>
+              <li>※ 座席を席をダブルクリックすることで色を変更できます</li>
+              <li>※ 列は偶数に変換されます。</li>
             </ul>
           </div>
-          <div className={styles.infoHeader}>前</div>
           <SeatingGrid />
           <div className={styles.buttonContainer}>
+            <PrintButton />
             <Button
               onClick={shuffleItems}
               className={styles.shuffleButton}
+              variant="primary"
             >
               シャッフル
             </Button>
             <Button
               onDoubleClick={handleClear}
               className={styles.clearButton}
+              variant="danger"
             >
               データ削除 (Double Click)
             </Button>

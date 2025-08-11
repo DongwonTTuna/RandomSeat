@@ -1,67 +1,57 @@
-.gridCell {
-  white-space: nowrap;
-  width: max-content;
+.cell {
   position: relative;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border-radius: 0.75rem;
-  padding: 0.5rem 2rem;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
-}
-.gridCell:hover {
-  cursor: grab;
-  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-  background-color: #96bffd;
-}
-.student {
-  background-image: linear-gradient(to bottom right, #c2d8f8, #bde5fe);
-  box-shadow: 0 4px 6px -1px #B8C6DB, 0 2px 4px -2px #B8C6DB;
-}
-.priority {
-  background-image: linear-gradient(to bottom right, #efefef, #ffffff);
-  box-shadow: 0 4px 6px -1px #b6b6b684, 0 2px 4px -2px #b6b6b684;
-}
-.useless {
-  background-image: linear-gradient(to bottom right, #fa7474, #ff9393);
-  box-shadow: 0 4px 6px -1px #fecaca, 0 2px 4px -2px #fecaca;
-  color: transparent;
-}
-
-.itemContainer {
+  border: 1px solid var(--border-color);
+  background-color: var(--secondary-bg);
+  padding: 1rem;
+  text-align: center;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  border-radius: 4px;
+  cursor: grab;
+  transition: background-color 0.2s ease;
 }
 
-.dragHandle {
-  border-radius: 0.5rem;
-  width: max-content;
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
-  padding: 3px;
-  padding-bottom: 0.5rem;
-  padding-right: 6px;
-  padding-left: 6px;
+.cell:active {
+  cursor: grabbing;
 }
-.dragHandle:hover {
-  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+.mode0 {
+  /* Default */
+}
+
+.mode1 {
+  /* Red */
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.mode2 {
+  /* White */
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
 }
 
 .nameInput {
-  width: 7rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  background-color: white;
-  color: #1f2937;
-  border-radius: 0.5rem;
+  width: 100%;
   text-align: center;
-}
-.nameInput:focus-within::placeholder {
-  color: #1f2937;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  padding: 0.25rem;
 }
 
-.hidden {
-  display: none;
+.nameInput:focus {
+  outline: 1px solid var(--accent-color);
+  border-radius: 2px;
+}
+
+.id {
+  font-size: 0.8rem;
+  color: var(--secondary-text);
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }
