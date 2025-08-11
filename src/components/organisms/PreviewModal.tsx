@@ -54,26 +54,20 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ onClose }) => {
       }}
     >
       <div className={styles.wrapper} ref={imageWrapperRef}>
-        <h1 className={styles.header}>前</h1>
+        <h1 className={styles.header}>席替えプレビュー</h1>
         <div className={styles.content}>
-          <div className="image-vertical-text">
-            <h5>廊下側</h5>
-          </div>
           <div className={styles.grid} style={{ gridTemplateColumns: gridCol }}>
             {data.items.map((item) => (
               <PreviewCell key={`prevcel-${item.id}`} {...item} />
             ))}
           </div>
-          <div className="image-vertical-text">
-            <h5>窓側</h5>
-          </div>
         </div>
       </div>
       <div className={styles.buttonContainer}>
-        <Button onClick={printOut} className={styles.confirmButton}>
+        <Button onClick={printOut} className={styles.confirmButton} variant="primary">
           出力
         </Button>
-        <Button onClick={onClose} className={styles.cancelButton}>
+        <Button onClick={onClose} className={styles.cancelButton} variant="secondary">
           キャンセル
         </Button>
       </div>

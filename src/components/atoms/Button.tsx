@@ -7,10 +7,18 @@ interface ButtonProps {
   children: React.ReactNode;
   onDoubleClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   type?: 'button' | 'submit' | 'reset';
+  variant?: 'primary' | 'secondary' | 'danger';
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, className, children, onDoubleClick, type = 'button' }) => {
-  const combinedClassName = `${styles.button} ${className || ''}`.trim();
+const Button: React.FC<ButtonProps> = ({
+  onClick,
+  className,
+  children,
+  onDoubleClick,
+  type = 'button',
+  variant = 'primary',
+}) => {
+  const combinedClassName = `${styles.button} ${styles[variant]} ${className || ''}`.trim();
 
   return (
     <button
