@@ -1,0 +1,67 @@
+.gridCell {
+  white-space: nowrap;
+  width: max-content;
+  position: relative;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 0.75rem;
+  padding: 0.5rem 2rem;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+.gridCell:hover {
+  cursor: grab;
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  background-color: #96bffd;
+}
+.student {
+  background-image: linear-gradient(to bottom right, #c2d8f8, #bde5fe);
+  box-shadow: 0 4px 6px -1px #B8C6DB, 0 2px 4px -2px #B8C6DB;
+}
+.priority {
+  background-image: linear-gradient(to bottom right, #efefef, #ffffff);
+  box-shadow: 0 4px 6px -1px #b6b6b684, 0 2px 4px -2px #b6b6b684;
+}
+.useless {
+  background-image: linear-gradient(to bottom right, #fa7474, #ff9393);
+  box-shadow: 0 4px 6px -1px #fecaca, 0 2px 4px -2px #fecaca;
+  color: transparent;
+}
+
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dragHandle {
+  border-radius: 0.5rem;
+  width: max-content;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  padding: 3px;
+  padding-bottom: 0.5rem;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+.dragHandle:hover {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.nameInput {
+  width: 7rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: white;
+  color: #1f2937;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+.nameInput:focus-within::placeholder {
+  color: #1f2937;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,14 @@
+.cell {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.empty {
+  background-color: #6b7280;
+}
+.filled {
+  background-color: #d1d5db;
+}

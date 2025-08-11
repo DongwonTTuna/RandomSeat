@@ -44,7 +44,12 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   const getInitialData = (): DataType => {
     const savedData = localStorage.getItem("data");
     if (savedData) {
-      return JSON.parse(savedData);
+      try {
+        return JSON.parse(savedData);
+      } catch (e) {
+        console.error("Failed to parse data from localStorage", e);
+        return initialValue;
+      }
     }
     return initialValue;
   };
@@ -56,45 +61,34 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   }, [data]);
 
   const shuffleItems = () => {
-    const shuffleArray = (inputArray: Array<any>) => {
-      inputArray.sort(() => Math.random() - 0.5);
-    };
+    const itemsToShuffle = data.items.filter(item => item.mode !== 2);
 
-    let priority_seat: Array<GridItems> = [];
-    let student_seat: Array<GridItems> = [];
+    // Fisher-Yates shuffle algorithm for better shuffling
+    for (let i = itemsToShuffle.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [itemsToShuffle[i], itemsToShuffle[j]] = [itemsToShuffle[j], itemsToShuffle[i]];
+    }
 
-    data.items.forEach((item) => {
-      if (item.mode === 0) student_seat.push(item);
-      if (item.mode === 1) priority_seat.push(item);
+    // Separate priority and student seats after shuffling
+    const prioritySeats = itemsToShuffle.filter(item => item.mode === 1);
+    const studentSeats = itemsToShuffle.filter(item => item.mode === 0);
+
+    const shuffledItems = [...prioritySeats, ...studentSeats];
+
+    let shuffledIndex = 0;
+    const newItems = data.items.map(item => {
+      if (item.mode === 2) {
+        return item;
+      }
+      return shuffledItems[shuffledIndex++];
     });
 
-    shuffleArray(priority_seat);
-    shuffleArray(student_seat);
-
-    const Tempdata: Array<GridItems> = [];
-    const fixed_items = data.items.filter(item => item.mode === 2);
-    const shuffled_items = [...priority_seat, ...student_seat];
-
-    let shuffled_idx = 0;
-    data.items.forEach((item) => {
-        if(item.mode === 2) {
-            Tempdata.push(item);
-        } else {
-            if(shuffled_idx < shuffled_items.length) {
-                Tempdata.push(shuffled_items[shuffled_idx]);
-                shuffled_idx++;
-            }
-        }
-    });
-
-
-    setData({ ...data, items: Tempdata });
+    setData({ ...data, items: newItems });
   };
 
   const clearData = () => {
     localStorage.removeItem("data");
     setData(initialValue);
-    // window.location.reload(); // This might be better handled in the component that calls it
   };
 
   return (

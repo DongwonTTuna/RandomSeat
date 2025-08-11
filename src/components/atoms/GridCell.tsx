@@ -1,27 +1,22 @@
 import React from 'react';
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
 import { GridItems } from '../../contexts/DataContext';
+import styles from './GridCell.module.css';
 
 interface GridCellProps {
   item: GridItems;
   onDoubleClick: (id: number) => void;
   onNameChange: (id: number, newName: string) => void;
+  onDragStart: (e: React.DragEvent<HTMLDivElement>) => void;
+  onDragOver: (e: React.DragEvent<HTMLDivElement>) => void;
 }
 
-const cssStyles = {
-  "0": { pclass: "grid-cell student", cchild: "drag-handle student" },
-  "1": { pclass: "grid-cell priority", cchild: "drag-handle priority" },
-  "2": { pclass: "grid-cell useless", cchild: "hidden" },
+const modeToClass = {
+  0: styles.student,
+  1: styles.priority,
+  2: styles.useless,
 };
 
-const GridCell: React.FC<GridCellProps> = ({ item, onDoubleClick, onNameChange }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: item.id });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
+const GridCell: React.FC<GridCellProps> = ({ item, onDoubleClick, onNameChange, onDragStart, onDragOver }) => {
 
   const handleDoubleClick = () => {
     onDoubleClick(item.id);
@@ -31,23 +26,25 @@ const GridCell: React.FC<GridCellProps> = ({ item, onDoubleClick, onNameChange }
     onNameChange(item.id, e.target.value);
   };
 
-  const styleClasses = cssStyles[item.mode as keyof typeof cssStyles] || cssStyles[0];
+  const cellClassName = `${styles.gridCell} ${modeToClass[item.mode as keyof typeof modeToClass] || styles.student}`;
+  const containerClassName = `${styles.itemContainer} ${item.mode === 2 ? styles.hidden : ''}`;
 
   return (
     <div
-      ref={setNodeRef}
-      style={style}
       onDoubleClick={handleDoubleClick}
-      className={styleClasses.pclass}
+      className={cellClassName}
+      draggable={item.mode !== 2}
+      onDragStart={onDragStart}
+      onDragOver={onDragOver}
     >
-      <div className={item.mode === 2 ? "grid-item-container hidden" : "grid-item-container"}>
+      <div className={containerClassName}>
         <p>学生</p>
-        <div {...listeners} {...attributes} className={styleClasses.cchild} tabIndex={-1}>
+        <div className={styles.dragHandle} tabIndex={-1}>
           ⣿
         </div>
         <input
           onChange={handleNameChange}
-          className="seat-name-input"
+          className={styles.nameInput}
           type="text"
           placeholder="お名前"
           defaultValue={item.name}

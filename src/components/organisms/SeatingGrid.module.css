@@ -1,0 +1,15 @@
+.wrapper {
+  min-width: 100%;
+  width: fit-content;
+  padding: 0.5rem;
+  margin-top: 3rem;
+  border-radius: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-gap: 8px;
+  padding: 10px;
+  margin: 0 auto;
+  width: fit-content;
+}
