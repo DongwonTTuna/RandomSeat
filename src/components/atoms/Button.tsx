@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './Button.module.css';
 
 interface ButtonProps {
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   children: React.ReactNode;
   onDoubleClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -9,12 +10,14 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick, className, children, onDoubleClick, type = 'button' }) => {
+  const combinedClassName = `${styles.button} ${className || ''}`.trim();
+
   return (
     <button
       type={type}
       onClick={onClick}
       onDoubleClick={onDoubleClick}
-      className={`btn ${className || ''}`}
+      className={combinedClassName}
     >
       {children}
     </button>

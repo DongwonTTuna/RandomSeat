@@ -3,6 +3,7 @@ import { useData } from "../../hooks/useData";
 import { GridItems } from "../../contexts/DataContext";
 import Button from "../atoms/Button";
 import Input from "../atoms/Input";
+import styles from './ChangeInputForm.module.css';
 
 const ChangeInputForm: React.FC = () => {
   const { data, setData } = useData();
@@ -52,8 +53,8 @@ const ChangeInputForm: React.FC = () => {
   };
 
   return (
-    <div className="value-input-section">
-      <div className="value-input-box">
+    <div className={styles.section}>
+      <div className={styles.box}>
         <div>
           席数 :
           <Input
@@ -75,7 +76,7 @@ const ChangeInputForm: React.FC = () => {
       </div>
 
       <div>
-        <Button onClick={handleSubmit} className="confirm-button">
+        <Button onClick={handleSubmit} className={styles.confirmButton}>
           確認
         </Button>
       </div>

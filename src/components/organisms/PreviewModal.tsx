@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
-import domtoimage from 'dom-to-image';
+import { toJpeg } from '../../utils/domToImage';
 import { useData } from '../../hooks/useData';
 import PreviewCell from '../atoms/PreviewCell';
 import Button from '../atoms/Button';
+import styles from './PreviewModal.module.css';
 
 interface PreviewModalProps {
   onClose: () => void;
@@ -15,7 +16,7 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ onClose }) => {
   const printOut = async () => {
     if (imageWrapperRef.current) {
       try {
-        const dataUrl = await domtoimage.toJpeg(imageWrapperRef.current);
+        const dataUrl = await toJpeg(imageWrapperRef.current);
         const link = document.createElement('a');
         link.download = 'seating-chart.jpeg';
         link.href = dataUrl;
@@ -45,20 +46,20 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ onClose }) => {
 
   return (
     <section
-      className="image-preview-section"
+      className={styles.section}
       onClick={(e) => {
         if (e.currentTarget === e.target) {
           onClose();
         }
       }}
     >
-      <div id="imageWrapper" ref={imageWrapperRef}>
-        <h1 className="image-header">前</h1>
-        <div className="image-content">
+      <div className={styles.wrapper} ref={imageWrapperRef}>
+        <h1 className={styles.header}>前</h1>
+        <div className={styles.content}>
           <div className="image-vertical-text">
             <h5>廊下側</h5>
           </div>
-          <div className="image-grid" style={{ gridTemplateColumns: gridCol }}>
+          <div className={styles.grid} style={{ gridTemplateColumns: gridCol }}>
             {data.items.map((item) => (
               <PreviewCell key={`prevcel-${item.id}`} {...item} />
             ))}
@@ -68,11 +69,11 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ onClose }) => {
           </div>
         </div>
       </div>
-      <div className="image-button-container">
-        <Button onClick={printOut} className="image-confirm-button">
+      <div className={styles.buttonContainer}>
+        <Button onClick={printOut} className={styles.confirmButton}>
           出力
         </Button>
-        <Button onClick={onClose} className="image-cancel-button">
+        <Button onClick={onClose} className={styles.cancelButton}>
           キャンセル
         </Button>
       </div>

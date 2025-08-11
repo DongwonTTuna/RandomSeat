@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import PreviewModal from '../organisms/PreviewModal';
+import styles from './PrintButton.module.css';
 
 const PrintButton: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -15,8 +16,8 @@ const PrintButton: React.FC = () => {
 
   return (
     <>
-      <button className="group" onClick={handleOpenModal}>
-        <span className="tooltip">出力</span>
+      <button className={styles.group} onClick={handleOpenModal}>
+        <span className={styles.tooltip}>出力</span>
         <img
           height={40}
           width={40}
